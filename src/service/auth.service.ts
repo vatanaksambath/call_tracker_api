@@ -1,14 +1,15 @@
-import { Injectable, UnauthorizedException, BadRequestException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, BadRequestException, ConflictException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, now } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { ConfigService } from '@nestjs/config';
-import { LoginDto } from '../dataModel/login.dto';
-import { ResetPasswordDto } from '../dataModel/reset-password.dto';
+import { LoginDto } from '../dataModel/auth/login.dto';
+import { ResetPasswordDto } from '../dataModel/auth/reset-password.dto';
 import { UserLogin } from '../auth/schema/user-login.schema';
 import { UserActivityLog } from '../auth/schema//user-activity-log.schema';
 import { ForgetPasswordLog } from '../auth/schema//forget-password-log.schema';
+import { CreateUserDto } from 'src/dataModel/auth/create-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -95,35 +96,35 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     const userId = resetDto.user_id.trim();
     const result = await this.loginModel.findOneAndUpdate(
-        { user_id: userId, is_reset_password: 'yes', is_active: 'yes', is_lock_out: 'no' },
-        { password: hashedPassword, is_reset_password: 'no', last_password_change_date: new Date().toLocaleString() }
+        { user_id: userId, is_reset_password: 'no', is_active: 'yes', is_lock_out: 'no' },
+        { password: hashedPassword, is_reset_password: 'yes', last_password_change_date: new Date().toLocaleString() }
     );
     if (!result) throw new BadRequestException('Password reset failed.');
-    
-    if (resetDto.is_forget_password) {
-        await this.forgetPasswordLogModel.findOneAndUpdate(
-            { user_id: userId },
-            { is_success: true, success_datetime: new Date().toISOString() },
-            { upsert: true, sort: { log_datetime: -1 } },
-        );
-    }
+  
     return { res_status: 200, res_message: 'Password reset successful.' };
   }
 
-  // async getRefreshToken(oldAccessToken: string) {
-  //   const tokenEntry = await this.refreshTokenModel.findOne({ accessToken: oldAccessToken });
-  //   if (!tokenEntry) throw new UnauthorizedException('Session expired. Please log in again.');
-  //   try {
-  //       const refreshPayload = this.jwtService.verify(tokenEntry.token, { secret: this.configService.get<string>('JWT_REFRESH_SECRET') || '356181248f0e77e95c382df2e5abd86108a7c7abccca340ef1f1118a1523525b' });
-  //       const newAccessPayload = { sub: refreshPayload.sub, username: refreshPayload.username };
-  //       const newAccessToken = this.jwtService.sign(newAccessPayload);
-  //       tokenEntry.accessToken = newAccessToken;
-  //       await tokenEntry.save();
-  //       return { new_access_token: newAccessToken, res_status: 200, res_message: 'Session successfully extended!' };
-  //   } catch (error) {
-  //       throw new UnauthorizedException('Invalid refresh token. Please log in again.');
-  //   }
-  // }
+  async createUser(createUserDto: CreateUserDto): Promise<UserLogin> {
+    const { user_id, password } = createUserDto;
+
+    const existingUser = await this.loginModel.findOne({ user_id }).exec();
+    if (existingUser) {
+      throw new ConflictException('User with this ID already exists.');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const localString: string = new Date().toLocaleString();
+    const newUser = new this.loginModel({
+      ...createUserDto,
+      password: hashedPassword,
+      last_update_by: createUserDto.created_by,
+      last_updated: localString, 
+      created_date: localString,
+    });
+    
+    return newUser.save();
+  }
   
   async getProfile(user: any) {
     return { message: 'Successfully accessed protected profile data.', user };

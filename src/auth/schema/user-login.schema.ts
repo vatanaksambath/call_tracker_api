@@ -18,9 +18,6 @@ export class UserLogin extends Document {
   @Prop({ type: String })
   email: string;
 
-  @Prop({ type: String })
-  team_member: string;
-
   @Prop({ type: String, default: 'yes' })
   is_active: string;
 
@@ -38,9 +35,6 @@ export class UserLogin extends Document {
 
   @Prop({ type: String })
   phone_number: string;
-
-  @Prop({ type: String })
-  extension: string;
 
   @Prop({ type: String })
   position: string;

@@ -12,8 +12,4 @@ export class ResetPasswordDto {
   @IsString()
   @IsNotEmpty()
   confirm_password: string;
-
-  @IsBoolean()
-  @IsOptional()
-  is_forget_password?: boolean;
 }

@@ -1,9 +1,10 @@
 import { Controller, Post, Body, Get, Req, UsePipes, ValidationPipe, UseGuards, Request as NestRequest, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../service/auth.service';
 import { AuthGuard } from '../auth/auth.guard';
-import { LoginDto } from '../dataModel/login.dto';
-import { ResetPasswordDto } from '../dataModel/reset-password.dto';
+import { LoginDto } from '../dataModel/auth/login.dto';
+import { ResetPasswordDto } from '../dataModel/auth/reset-password.dto';
 import { Request } from 'express';
+import { CreateUserDto } from 'src/dataModel/auth/create-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -20,6 +21,15 @@ export class AuthController {
   @UsePipes(new ValidationPipe())
   async resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
     return this.authService.resetPassword(resetPasswordDto);
+  }
+
+  @UseGuards(AuthGuard) 
+  @Post('create')
+  @UsePipes(new ValidationPipe())
+  async createUser(@Body() createUserDto: CreateUserDto) {
+    const user = await this.authService.createUser(createUserDto);
+    const { password, ...result } = user.toObject();
+    return { message: 'User created successfully', user: result };
   }
 
   // @Get('refresh-token')
