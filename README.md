@@ -2,8 +2,8 @@
 
 > **INTERNAL PROJECT**
 
-A modern RESTful API built with [NestJS](https://nestjs.com/) for streamlined management and processing of legal documents and data.  
-This API is engineered for internal use, offering robust endpoints for legal operations, document handling, and frictionless integration with internal legal information systems.
+A modern RESTful API built with [NestJS](https://nestjs.com/) for streamlined management and processing of call tracker document and data.  
+This API is engineered for internal use, offering robust endpoints for call tracker operations, document handling, and frictionless integration with internal call tracker information systems.
 
 ---
 
@@ -27,7 +27,7 @@ This API is engineered for internal use, offering robust endpoints for legal ope
 ### 1. Clone the Repository
 
 ```sh
-git clone http://172.16.128.207:8929/root/npl_legal_api.git
+git clone https://github.com/vatanaksambath/call_tracker_api.git
 cd call_tracker_api
 ```
 
@@ -49,11 +49,11 @@ npm install
 
 ## ✨ Features
 
-- Secure legal document upload, retrieval, and processing
-- RESTful endpoints for comprehensive legal data management
+- Secure call tracker data upload, retrieval, and processing
+- RESTful endpoints for comprehensive call tracker data management
 - Modular, scalable NestJS architecture (Controllers, Services, Modules)
 - JWT authentication & role-based authorization
-- Deep integration with internal legal systems
+- Deep integration with internal call tracker systems
 - Scalable and extensible by design
 
 ---
