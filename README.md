@@ -28,7 +28,7 @@ This API is engineered for internal use, offering robust endpoints for legal ope
 
 ```sh
 git clone http://172.16.128.207:8929/root/npl_legal_api.git
-cd npl_legal_api
+cd call_tracker_api
 ```
 
 ### 2. Install Dependencies
@@ -96,14 +96,14 @@ All endpoints require JWT authentication (`Authorization: Bearer <token>`). Perm
 
 > **See Swagger UI docs for up-to-date request/response schemas.**
 
-### Collateral (`/collateral`)
+### Collateral (`/project`)
 
 | Method | Endpoint     | Description                      | Request DTO               | Query Parameters      |
 |--------|--------------|---------------------------------|---------------------------|----------------------|
-| POST   | `/insert`    | Create new collateral            | `CreateCollateralDTO`     | N/A                  |
-| PUT    | `/update`    | Update existing collateral       | `UpdateCollateralDTO`     | N/A                  |
+| POST   | `/insert`    | Create new collateral            | `CreateProjectDTO`     | N/A                  |
+| PUT    | `/update`    | Update existing collateral       | `UpdateProjectDTO`     | N/A                  |
 | GET    | `/:id`       | Get collateral by ID             | N/A                       | Path param: `id`     |
-| POST   | `/pagination`| Get paginated list of collateral | `CollateralPaginationDTO` | N/A                  |
+| POST   | `/pagination`| Get paginated list of collateral | `ProjectPaginationDTO` | N/A                  |
 | PUT    | `/`          | Toggle collateral setting status | N/A                       | Query: `id`, `status`|
 
 ---
@@ -118,128 +118,6 @@ All endpoints require JWT authentication (`Authorization: Bearer <token>`). Perm
 | GET    | `/address/district/:id`    | Get districts by province ID    | N/A                       | Path param: `id`             |
 | GET    | `/address/commune/:id`     | Get communes by district ID     | N/A                       | Path param: `id`             |
 | GET    | `/address/village/:id`     | Get villages by commune ID      | N/A                       | Path param: `id`             |
-| GET    | `/lawyer`                  | Get all lawyers                 | N/A                       | N/A                          |
-| POST   | `/customer/pagination`     | Paginated customer listing      | `CustomerPaginationDTO`   | N/A                          |
-| GET    | `/account`                 | Get account by customer ID and account number | N/A             | Query: `customerID`, `accountNO` |
-| GET    | `/currency`                | Get all currencies              | N/A                       | N/A                          |
-| GET    | `/judgement`               | Get judgement types            | N/A                       | N/A                          |
-| GET    | `/appeal`                  | Get appeals                    | N/A                       | N/A                          |
-| DELETE | `/appeal/:id`              | Delete appeal by ID            | N/A                       | Path param: `id`             |
-| GET    | `/region`                  | Get all regions                | N/A                       | N/A                          |
-| GET    | `/branch/:id`              | Get branch by ID               | N/A                       | Path param: `id`             |
-
----
-
-
-### Complaint (`/complaint`)
-
-| Method | Endpoint         | Description                          | Request DTO                 | Path / Query Params           |
-|--------|------------------|------------------------------------|-----------------------------|------------------------------|
-| POST   | `/insert`        | Create a new complaint              | `CreateNplComplaintDto`      | N/A                          |
-| PUT    | `/update`        | Update an existing complaint        | `UpdateNplComplaintDto`      | N/A                          |
-| PUT    | `/close`         | Close a complaint case              | `ComplaintCloseCaseDTO`      | N/A                          |
-| POST   | `/pagination`    | Paginated list of complaints        | `ComplaintPaginationDTO`    | N/A                          |
-| GET    | `/:id`           | Get complaint by ID                 | N/A                         | Path param: `id`             |
-| POST   | `/export`        | Export complaint data (Excel)       | `ComplaintExportDTO`         | N/A                          |
-
-
----
-
-### Complaint Type (`/complaint-type`)
-
-| Method | Endpoint            | Description                          | Request DTO                  | Path / Query Params           |
-|--------|---------------------|------------------------------------|------------------------------|------------------------------|
-| POST   | `/insert`           | Create new complaint type           | `CreateComplaintTypeDTO`      | N/A                          |
-| PUT    | `/update`           | Update an existing complaint type   | `UpdateComplaintTypeDTO`      | N/A                          |
-| POST   | `/pagination`       | Paginated list of complaint types   | `ComplaintTypePaginationDTO` | N/A                          |
-| GET    | `/:id`              | Get complaint type by ID             | N/A                          | Path param: `id`             |
-| PUT    | `/`                 | Toggle setting status (enable/disable) | N/A                     | Query params: `id`, `status` |
-
-
----
-
-### Sub Complaint Type (`/sub-complaint`)
-
-| Method | Endpoint      | Description                       | Request DTO                     | Path / Query Params          |
-| ------ | ------------- | --------------------------------- | ------------------------------- | ---------------------------- |
-| POST   | `/insert`     | Create a new sub complaint type   | `CreateSubComplaintTypeDTO`     | N/A                          |
-| PUT    | `/update`     | Update a sub complaint type       | `UpdateSubComplaintTypeDTO`     | N/A                          |
-| GET    | `/:id`        | Get sub complaint type by ID      | N/A                             | Path param: `id`             |
-| POST   | `/pagination` | Get paginated sub complaint types | `SubComplaintTypePaginationDTO` | N/A                          |
-| PUT    | `/`           | Toggle setting update (status)    | N/A                             | Query params: `id`, `status` |
-
-
----
-
-### Compulsory Execution (`/compulsary`)
-
-| Method  | Endpoint               | Description                             | Request DTO                          | Path / Query Params          |
-|---------|------------------------|---------------------------------------|------------------------------------|-----------------------------|
-| POST    | `/insert`              | Create a new compulsory execution     | `CreateNPLCompulsoryDto`            | N/A                         |
-| PUT     | `/update`              | Update an existing compulsory record  | `UpdateNPLCompulsoryDto`            | N/A                         |
-| PUT     | `/close`               | Close a compulsory case                | `CompulsoryCloseCaseDTO`            | N/A                         |
-| GET     | `/:id`                 | Get compulsory record by ID            | N/A                                | Path param: `id`            |
-| DELETE  | `/:id`                 | Delete compulsory record by ID         | N/A                                | Path param: `id`            |
-| POST    | `/pagination`          | Paginated list of compulsory records  | `CompulsoryPaginationDTO`           | N/A                         |
-| POST    | `/complaint/pagination`| Paginated list of complaints related  | `ComplaintForCompulsoryPaginationDTO` | N/A                       |
-| POST    | `/export`              | Export compulsory execution data       | `CompulsoryExportDTO`               | N/A                         |
-
----
-
-### Appeal Court (`/appeal-court`)
-
-| Method | Endpoint            | Description                        | Request DTO              | Path / Query Params            |
-|--------|---------------------|----------------------------------|--------------------------|-------------------------------|
-| POST   | `/insert`           | Create new appeal court record   | `CreateAppealCourtDTO`   | N/A                           |
-| PUT    | `/update`           | Update an appeal court record    | `UpdateAppealCourtDTO`   | N/A                           |
-| GET    | `/:id`              | Get appeal court by ID            | N/A                      | Path param: `id`              |
-| POST   | `/pagination`       | Paginated appeal court listing   | `AppealCourtPaginationDTO`| N/A                          |
-| PUT    | `/`                 | Toggle setting status (enable/disable) | N/A                  | Query params: `id`, `status`  |
-
-
----
-
-### Sub Court (`/first-instance`)
-
-| Method | Endpoint      | Description                       | Request DTO                  | Path / Query Params          |
-| ------ | ------------- | --------------------------------- | ---------------------------- | ---------------------------- |
-| POST   | `/insert`     | Create a new first instance       | `CreateFirstInstanceDTO`     | N/A                          |
-| PUT    | `/update`     | Update an existing first instance | `UpdateFirstInstanceDTO`     | N/A                          |
-| GET    | `/:id`        | Get first instance by ID          | N/A                          | Path param: `id`             |
-| POST   | `/pagination` | Get paginated list of instances   | `FirstInstancePaginationDTO` | N/A                          |
-| PUT    | `/`           | Toggle setting status             | N/A                          | Query params: `id`, `status` |
-
-
----
-
-### Legal Advice (`/legal-advice`)
-
-| Method | Endpoint      | Description                        | Request DTO                | Path / Query Params |
-| ------ | ------------- | ---------------------------------- | -------------------------- | ------------------- |
-| POST   | `/insert`     | Create new legal advice            | `CreateLegalAdviceDTO`     | N/A                 |
-| PUT    | `/update`     | Update existing legal advice       | `UpdateLegalAdviceDTO`     | N/A                 |
-| PUT    | `/close`      | Close a legal advice case          | `LegalAdviceCloseCaseDTO`  | N/A                 |
-| GET    | `/:id`        | Get legal advice by ID             | N/A                        | Path param: `id`    |
-| DELETE | `/:id`        | Delete legal advice by ID          | N/A                        | Path param: `id`    |
-| POST   | `/pagination` | Get paginated list of legal advice | `LegalAdvicePaginationDTO` | N/A                 |
-| POST   | `/export`     | Export legal advice data           | `LegalAdviceExportDTO`     | N/A                 |
-
-
----
-
-### Legal Expense (`/legal-expense`)
-
-| Method | Endpoint           | Description                       | Request DTO                     | Path / Query Params |
-| ------ | ------------------ | --------------------------------- | ------------------------------- | ------------------- |
-| POST   | `/insert`          | Create new legal expense          | `CreateLegalExpenseDTO`         | N/A                 |
-| PUT    | `/update`          | Update existing legal expense     | `UpdateLegalExpenseDTO`         | N/A                 |
-| POST   | `/pagination`      | Get paginated legal expenses      | `LegalExpensePaginationDTO`     | N/A                 |
-| POST   | `/case/pagination` | Get paginated legal expense cases | `LegalExpenseCasePaginationDTO` | N/A                 |
-| GET    | `/:id`             | Get legal expense by ID           | N/A                             | Path param: `id`    |
-| DELETE | `/:id`             | Delete legal expense by ID        | N/A                             | Path param: `id`    |
-| POST   | `/export`          | Export legal expense data         | `LegalExpenseExportDTO`         | N/A                 |
-
-
 ---
 
 ### Staff Info (`/staff`)
@@ -266,8 +144,6 @@ All endpoints require JWT authentication (`Authorization: Bearer <token>`). Perm
   - `POSTGRES_USER`
   - `POSTGRES_PASSWORD`
   - `POSTGRES_DATABASE`
-  - `UMS_DATABASE`
-  - `DW_DATABASE`
   - _...and more as needed_
 
 ---
