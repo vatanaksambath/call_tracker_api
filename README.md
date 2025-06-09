@@ -96,7 +96,17 @@ All endpoints require JWT authentication (`Authorization: Bearer <token>`). Perm
 
 > **See Swagger UI docs for up-to-date request/response schemas.**
 
-### Collateral (`/project`)
+### Authentication (`/auth`)
+
+| Method | Endpoint     | Description                      | Request DTO               | Query Parameters      |
+|--------|--------------|---------------------------------|---------------------------|----------------------|
+| POST   | `/login`    | Create new collateral            | `LoginDTO`     | N/A                  |
+| POST   | `/create`    | Update existing collateral       | `CreateUserDTO`     | N/A                  |
+| POST   | `/reset-password`| Get paginated list of collateral | `ResetPasswordDTO` | N/A                  |
+
+
+
+### Project (`/project`)
 
 | Method | Endpoint     | Description                      | Request DTO               | Query Parameters      |
 |--------|--------------|---------------------------------|---------------------------|----------------------|
