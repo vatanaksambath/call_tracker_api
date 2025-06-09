@@ -100,9 +100,9 @@ All endpoints require JWT authentication (`Authorization: Bearer <token>`). Perm
 
 | Method | Endpoint     | Description                      | Request DTO               | Query Parameters      |
 |--------|--------------|---------------------------------|---------------------------|----------------------|
-| POST   | `/login`    | Create new collateral            | `LoginDTO`     | N/A                  |
-| POST   | `/create`    | Update existing collateral       | `CreateUserDTO`     | N/A                  |
-| POST   | `/reset-password`| Get paginated list of collateral | `ResetPasswordDTO` | N/A                  |
+| POST   | `/login`    | Login            | `LoginDTO`     | N/A                  |
+| POST   | `/create`    | Create User       | `CreateUserDTO`     | N/A                  |
+| POST   | `/reset-password`| Reset Password | `ResetPasswordDTO` | N/A                  |
 
 
 
@@ -110,11 +110,11 @@ All endpoints require JWT authentication (`Authorization: Bearer <token>`). Perm
 
 | Method | Endpoint     | Description                      | Request DTO               | Query Parameters      |
 |--------|--------------|---------------------------------|---------------------------|----------------------|
-| POST   | `/insert`    | Create new collateral            | `CreateProjectDTO`     | N/A                  |
-| PUT    | `/update`    | Update existing collateral       | `UpdateProjectDTO`     | N/A                  |
-| GET    | `/:id`       | Get collateral by ID             | N/A                       | Path param: `id`     |
-| POST   | `/pagination`| Get paginated list of collateral | `ProjectPaginationDTO` | N/A                  |
-| PUT    | `/`          | Toggle collateral setting status | N/A                       | Query: `id`, `status`|
+| POST   | `/insert`    | Create new project            | `CreateProjectDTO`     | N/A                  |
+| PUT    | `/update`    | Update existing project       | `UpdateProjectDTO`     | N/A                  |
+| GET    | `/:id`       | Get project by ID             | N/A                       | Path param: `id`     |
+| POST   | `/pagination`| Get paginated list of project | `ProjectPaginationDTO` | N/A                  |
+| PUT    | `/`          | Toggle project setting status | N/A                       | Query: `id`, `status`|
 
 ---
 
