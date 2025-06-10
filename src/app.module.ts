@@ -15,6 +15,8 @@ import { AuthService } from './service/auth.service';
 import { UserLogin, UserLoginSchema } from './auth/schema/user-login.schema';
 import { UserActivityLog, UserActivityLogSchema } from './auth/schema/user-activity-log.schema';
 import { ForgetPasswordLog, ForgetPasswordLogSchema } from './auth/schema/forget-password-log.schema';
+import { RBACService } from './service/rbac.service';
+import { RBACController } from './controller/rbac.controller';
 
 
 @Module({
@@ -44,6 +46,7 @@ import { ForgetPasswordLog, ForgetPasswordLogSchema } from './auth/schema/forget
   controllers:[
     CommonController,
     AuthController,
+    RBACController,
     ],
   providers: [
     AuthGuard,
@@ -51,6 +54,7 @@ import { ForgetPasswordLog, ForgetPasswordLogSchema } from './auth/schema/forget
     LoggingInterceptor,
     LoggingFormate,
     AuthService,
+    RBACService,
   ],
 })
 
