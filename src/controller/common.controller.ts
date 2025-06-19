@@ -18,12 +18,16 @@ import { AuthGuard } from "../auth/auth.guard";
 import { CommonService } from '../service/common.service';
 import { CustomerPaginationDTO } from '../dataModel/common.dto';
 import { dispatchBadRequestException } from '../common/error-handler.util';
+import { RequirePermission } from 'src/auth/decorator/permission.decorator';
+import { PermissionGuard } from 'src/auth/decorator/permission.guard';
 
 @Controller('common')
 @UseGuards(AuthGuard)
 export class CommonController {
     constructor(private readonly commonService: CommonService) { }
     
+    // @UseGuards(PermissionGuard)
+    // @RequirePermission('MU_02', 'PM_02')
     @Get("address/province")
     @HttpCode(200)
     async getProvince(@Request() req) {

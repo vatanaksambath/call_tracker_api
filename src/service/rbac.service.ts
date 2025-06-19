@@ -22,7 +22,7 @@ export class RBACService {
     }
 
     async createRole(roleDto: RoleDTO, userId: number) {
-        const parameters = [roleDto.role_name, userId]
+        const parameters = [roleDto.role_id, roleDto.role_name, userId]
         try {
             const result = await this.call_tracker.query(SQL.roleInsert, parameters);
             return result;

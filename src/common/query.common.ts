@@ -9,7 +9,7 @@ export const SQL = {
 
 /*  ==============================> Role Base Access Control <================================ */
     getRole: 'SELECT * FROM get_role()',
-    roleInsert: 'CALL role_insert($1, $2)',
+    roleInsert: 'CALL role_insert($1, $2, $3)',
     roleUpdate: 'CALL role_update($1, $2, $3, $4, $5)',
     roleDelete: 'CALL role_delete($1, $2)',
 
@@ -17,6 +17,9 @@ export const SQL = {
     userRoleInsert: 'CALL user_role_insert($1, $2, $3, $4, $5)',
     userRoleUpdate: 'CALL user_role_update($1, $2, $3, $4, $5)',
     userRoleDelete: 'CALL user_role_delete($1, $2)',
+
+    getUserRoleByID: 'SELECT * FROM get_user_role_by_id($1)',
+    getUserRolePermissionByID: 'SELECT * FROM get_user_role_permission_by_id($1)',
 
 /*  ==============================> NPL Compulsary <================================ */
     

@@ -17,6 +17,8 @@ import { UserActivityLog, UserActivityLogSchema } from './auth/schema/user-activ
 import { ForgetPasswordLog, ForgetPasswordLogSchema } from './auth/schema/forget-password-log.schema';
 import { RBACService } from './service/rbac.service';
 import { RBACController } from './controller/rbac.controller';
+import { PermissionGuard } from './auth/decorator/permission.guard';
+import { UserPermissionService } from './auth/decorator/user-permission.service';
 
 
 @Module({
@@ -50,6 +52,8 @@ import { RBACController } from './controller/rbac.controller';
     ],
   providers: [
     AuthGuard,
+    PermissionGuard,
+    UserPermissionService,
     CommonService,
     LoggingInterceptor,
     LoggingFormate,
