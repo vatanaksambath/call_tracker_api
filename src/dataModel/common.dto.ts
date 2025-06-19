@@ -1,23 +1,23 @@
 import { IsIn, IsNotEmpty, IsOptional } from 'class-validator';
 import { Transform } from 'class-transformer';
 
-export class CustomerPaginationDTO {
+export class CommonDTO {
 
     @IsNotEmpty({ message: 'page is required' })
-    page: number;
+    page_number: number;
 
     @IsNotEmpty({ message: 'page Size is required' })
-    pageSize: number;
+    page_size: number;
 
     @Transform(({ value }) => (value === '' ? null : value))
     @IsOptional()
-    @IsIn(['customerID', 'customerName'], {
-        message: 'searchType must be either "customerID" or "customerName"',
-    })
-    searchType: string;
+    // @IsIn(['customerID', 'customerName'], {
+    //     message: 'searchType must be either "customerID" or "customerName"',
+    // })
+    search_type: string;
 
     @IsOptional()
     @Transform(({ value }) => (value === '' ? null : value))
-    querySearch: string;
+    query_search: string;
 
 }

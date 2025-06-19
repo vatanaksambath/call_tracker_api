@@ -19,6 +19,12 @@ import { RBACService } from './service/rbac.service';
 import { RBACController } from './controller/rbac.controller';
 import { PermissionGuard } from './auth/decorator/permission.guard';
 import { UserPermissionService } from './auth/decorator/user-permission.service';
+import { DeveloperController } from './controller/developer.controller';
+import { DeveloperService } from './service/developer.service';
+import { ProjectOwnerController } from './controller/project-owner.controller';
+import { ProjectOwnerService } from './service/project-owner.service';
+import { ProjectService } from './service/project.service';
+import { ProjectController } from './controller/project.controller';
 
 
 @Module({
@@ -49,6 +55,9 @@ import { UserPermissionService } from './auth/decorator/user-permission.service'
     CommonController,
     AuthController,
     RBACController,
+    DeveloperController,
+    ProjectOwnerController,
+    ProjectController,
     ],
   providers: [
     AuthGuard,
@@ -59,6 +68,9 @@ import { UserPermissionService } from './auth/decorator/user-permission.service'
     LoggingFormate,
     AuthService,
     RBACService,
+    DeveloperService,
+    ProjectOwnerService,
+    ProjectService,
   ],
 })
 

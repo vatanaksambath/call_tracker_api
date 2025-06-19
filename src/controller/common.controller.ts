@@ -16,7 +16,6 @@ import {
 
 import { AuthGuard } from "../auth/auth.guard";
 import { CommonService } from '../service/common.service';
-import { CustomerPaginationDTO } from '../dataModel/common.dto';
 import { dispatchBadRequestException } from '../common/error-handler.util';
 import { RequirePermission } from 'src/auth/decorator/permission.decorator';
 import { PermissionGuard } from 'src/auth/decorator/permission.guard';

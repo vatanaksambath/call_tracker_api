@@ -2,7 +2,6 @@ import {  Injectable, UseGuards } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { SQL } from '../common/query.common';
-import { CustomerPaginationDTO } from '../dataModel/common.dto';
 import { formatAccountNumber } from 'src/common/common.util';
 
 @Injectable()
