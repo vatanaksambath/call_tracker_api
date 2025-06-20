@@ -10,7 +10,7 @@ export class UserPermissionService {
     // @InjectDataSource() private readonly call_tracker: DataSource,private readonly permissionService: PermissionService,
     @InjectDataSource() private call_tracker: DataSource
   ) { }
-  private readonly ADMIN_ROLE_ID = 'RG_01'; // ← Define your admin role here
+  private readonly ADMIN_ROLE_ID = 'RG_01';
 
   async checkUserHasPermission(
     staffId: number,

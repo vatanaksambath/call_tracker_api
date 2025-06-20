@@ -25,7 +25,16 @@ import { ProjectOwnerController } from './controller/project-owner.controller';
 import { ProjectOwnerService } from './service/project-owner.service';
 import { ProjectService } from './service/project.service';
 import { ProjectController } from './controller/project.controller';
-
+import { BusinessController } from './controller/business.controller';
+import { BusinessService } from './service/business.service';
+import { LeadSourceController } from './controller/lead-source.controller';
+import { CustomerTypeController } from './controller/customer-type.controller';
+import { LeadSourceService } from './service/lead-source.service';
+import { CustomerTypeService } from './service/customer-type.service';
+import { PropertyTypeController } from './controller/property-type.controller';
+import { PropertyTypeService } from './service/property-type.service';
+import { PropertyProfileController } from './controller/property-profile.controller';
+import { PropertyProfileService } from './service/property-profile.service';
 
 @Module({
   imports: [
@@ -58,6 +67,11 @@ import { ProjectController } from './controller/project.controller';
     DeveloperController,
     ProjectOwnerController,
     ProjectController,
+    BusinessController,
+    LeadSourceController,
+    CustomerTypeController,
+    PropertyTypeController,
+    PropertyProfileController,
     ],
   providers: [
     AuthGuard,
@@ -71,6 +85,11 @@ import { ProjectController } from './controller/project.controller';
     DeveloperService,
     ProjectOwnerService,
     ProjectService,
+    BusinessService,
+    LeadSourceService,
+    CustomerTypeService,
+    PropertyTypeService,
+    PropertyProfileService,
   ],
 })
 

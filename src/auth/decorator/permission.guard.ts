@@ -33,10 +33,8 @@ export class PermissionGuard implements CanActivate {
       required.permission_id,
     );
 
-    console.log(has);
-
     if (!has) {
-      throw new ForbiddenException('Access denied: missing permission');
+      throw new ForbiddenException('Access denied: you do not have permission to access this!!!');
     }
 
     return true;

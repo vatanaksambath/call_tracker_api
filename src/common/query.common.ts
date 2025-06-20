@@ -39,6 +39,35 @@ export const SQL = {
     projectUpdate: 'CALL project_update($1, $2, $3, $4, $5, $6, $7)',
     projectDelete: 'CALL project_delete($1)',
 
+/*  ==============================> Business <================================ */
+    businessPagination: 'SELECT * FROM business_pagination($1, $2, $3, $4)',
+    businessInsert: 'CALL business_insert($1, $2, $3)',
+    businessUpdate: 'CALL business_update($1, $2, $3, $4, $5)',
+    businessDelete: 'CALL business_delete($1)',
+
+/*  ==============================> Lead Source <================================ */
+    leadSourcePagination: 'SELECT * FROM lead_source_pagination($1, $2, $3, $4)',
+    leadSourceInsert: 'CALL lead_source_insert($1, $2, $3)',
+    leadSourceUpdate: 'CALL lead_source_update($1, $2, $3, $4, $5)',
+    leadSourceDelete: 'CALL lead_source_delete($1)',
+
+/*  ==============================> Customer Type <================================ */
+    customerTypePagination: 'SELECT * FROM  customer_type_pagination($1, $2, $3, $4)',
+    customerTypeInsert: 'CALL customer_type_insert($1, $2, $3)',
+    customerTypeUpdate: 'CALL customer_type_update($1, $2, $3, $4, $5)',
+    customerTypeDelete: 'CALL customer_type_delete($1)',
+
+/*  ==============================> Property Type <================================ */
+    propertyTypePagination: 'SELECT * FROM  property_type_pagination($1, $2, $3, $4)',
+    propertyTypeInsert: 'CALL property_type_insert($1, $2, $3)',
+    propertyTypeUpdate: 'CALL property_type_update($1, $2, $3, $4, $5)',
+    propertyTypeDelete: 'CALL property_type_delete($1)',
+
+/*  ==============================> Property Profile <================================ */
+    propertyProfilePagination: 'SELECT * FROM  property_profile_pagination($1, $2, $3, $4)',
+    propertyProfileInsert: 'CALL property_profile_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
+    propertyProfileUpdate: 'CALL property_profile_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)',
+    propertyProfileDelete: 'CALL property_profile_delete($1)',
 
 /*  ==============================> NPL Compulsary <================================ */
     
