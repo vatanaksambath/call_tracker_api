@@ -35,6 +35,8 @@ import { PropertyTypeController } from './controller/property-type.controller';
 import { PropertyTypeService } from './service/property-type.service';
 import { PropertyProfileController } from './controller/property-profile.controller';
 import { PropertyProfileService } from './service/property-profile.service';
+import { StaffController } from './controller/staff.controller';
+import { StaffService } from './service/staff.service';
 
 @Module({
   imports: [
@@ -72,6 +74,7 @@ import { PropertyProfileService } from './service/property-profile.service';
     CustomerTypeController,
     PropertyTypeController,
     PropertyProfileController,
+    StaffController,
     ],
   providers: [
     AuthGuard,
@@ -90,6 +93,7 @@ import { PropertyProfileService } from './service/property-profile.service';
     CustomerTypeService,
     PropertyTypeService,
     PropertyProfileService,
+    StaffService,
   ],
 })
 
