@@ -10,8 +10,6 @@ import { LoggingInterceptor } from './middleware/logger.middleware';
 import { LoggingFormate } from './common/logging.formate';
 import { AuthController } from './controller/auth.controller';
 import { AuthService } from './service/auth.service';
-// import { AuthModule } from './auth/auth.module';
-
 import { UserLogin, UserLoginSchema } from './auth/schema/user-login.schema';
 import { UserActivityLog, UserActivityLogSchema } from './auth/schema/user-activity-log.schema';
 import { ForgetPasswordLog, ForgetPasswordLogSchema } from './auth/schema/forget-password-log.schema';
@@ -37,6 +35,8 @@ import { PropertyProfileController } from './controller/property-profile.control
 import { PropertyProfileService } from './service/property-profile.service';
 import { StaffController } from './controller/staff.controller';
 import { StaffService } from './service/staff.service';
+import { ChannelTypeController } from './controller/channel.controller';
+import { ChannelTypeService } from './service/channel-type.service';
 
 @Module({
   imports: [
@@ -75,6 +75,7 @@ import { StaffService } from './service/staff.service';
     PropertyTypeController,
     PropertyProfileController,
     StaffController,
+    ChannelTypeController,
     ],
   providers: [
     AuthGuard,
@@ -94,6 +95,7 @@ import { StaffService } from './service/staff.service';
     PropertyTypeService,
     PropertyProfileService,
     StaffService,
+    ChannelTypeService,
   ],
 })
 

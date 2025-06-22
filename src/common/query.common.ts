@@ -75,6 +75,12 @@ export const SQL = {
     staffUpdate: 'CALL staff_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)',
     staffDelete: 'CALL staff_delete($1)',
 
+/*  ==============================> Channel <================================ */
+    channelTypePagination: 'SELECT * FROM channel_type_pagination($1, $2, $3, $4)',
+    channelTypeInsert: 'CALL channel_type_insert($1, $2, $3)',
+    channelTypeUpdate: 'CALL channel_type_update($1, $2, $3, $4, $5)',
+    channelTypeDelete: 'CALL channel_type_delete($1)',
+
 /*  ==============================> Staff Information <================================ */
 
     staffInformation : 'SELECT * FROM get_staff_info($1)',
