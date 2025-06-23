@@ -37,7 +37,7 @@ export class StaffController {
     async create(@Body() staffDTO: StaffDTO, @Req() req) {
         const userId = req.user?.user_id;
        try {
-            const result = this.staffService.createStaff(staffDTO, userId);
+            const result = this.staffService.createStaff(staffDTO, userId, "MU_05");
             return result;
         } catch (error) {
             dispatchBadRequestException(error);
@@ -53,7 +53,7 @@ export class StaffController {
     async update(@Body() staffDTO: StaffDTO, @Req() req) {
         const userId = req.user?.user_id;
         try {
-            const result = this.staffService.updateStaff(staffDTO, userId);
+            const result = this.staffService.updateStaff(staffDTO, userId, "MU_05");
             return result;
         } catch (error) {
             dispatchBadRequestException(error);

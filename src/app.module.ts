@@ -35,7 +35,7 @@ import { PropertyProfileController } from './controller/property-profile.control
 import { PropertyProfileService } from './service/property-profile.service';
 import { StaffController } from './controller/staff.controller';
 import { StaffService } from './service/staff.service';
-import { ChannelTypeController } from './controller/channel.controller';
+import { ChannelTypeController } from './controller/channel-type.controller';
 import { ChannelTypeService } from './service/channel-type.service';
 
 @Module({

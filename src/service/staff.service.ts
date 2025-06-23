@@ -3,7 +3,7 @@ import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { SQL } from '../common/query.common';
 import { StaffDTO } from 'src/dataModel/staff.dto';
-import { CommonDTO} from 'src/dataModel/common.dto'
+import { CommonDTO } from 'src/dataModel/common.dto';
 
 @Injectable()
 export class StaffService {
@@ -13,7 +13,8 @@ export class StaffService {
     ) { }
 
     async StaffPagination(commonDTO: CommonDTO, userId: number) {
-        const parameters = [commonDTO.page_number, commonDTO.page_size, commonDTO.search_type, commonDTO.query_search]
+        const parameters = [commonDTO.page_number, commonDTO.page_size, commonDTO.search_type, commonDTO.query_search, userId];
+        console.log("Parameters for staff pagination:", parameters);
         try {
             const result = await this.call_tracker.query(SQL.staffPagination, parameters);
             return result;
@@ -22,7 +23,7 @@ export class StaffService {
         }
     }
 
-    async createStaff(staffDTO: StaffDTO, userId: number) {
+    async createStaff(staffDTO: StaffDTO, userId: number, menuId: string) {
         const parameters = [
             staffDTO.staff_id,
             staffDTO.staff_code,
@@ -40,6 +41,8 @@ export class StaffService {
             staffDTO.employment_level,
             staffDTO.current_address,
             staffDTO.photo_url,
+            menuId,
+            JSON.stringify(staffDTO.contact_data),
             userId
         ]
         try {
@@ -51,7 +54,7 @@ export class StaffService {
         }
     }
 
-    async updateStaff(staffDTO: StaffDTO, userId: number) {
+    async updateStaff(staffDTO: StaffDTO, userId: number, menuId: string) {
         const parameters = [
             staffDTO.staff_id,
             staffDTO.staff_code,
@@ -70,6 +73,8 @@ export class StaffService {
             staffDTO.current_address,
             staffDTO.photo_url,
             staffDTO.is_active,
+            menuId,
+            JSON.stringify(staffDTO.contact_data),
             userId
         ]
         try {

@@ -70,9 +70,9 @@ export const SQL = {
     propertyProfileDelete: 'CALL property_profile_delete($1)',
 
 /*  ==============================> Property Profile <================================ */
-    staffPagination: 'SELECT * FROM staff_pagination($1, $2, $3, $4)',
-    staffInsert: 'CALL staff_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)',
-    staffUpdate: 'CALL staff_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)',
+    staffPagination: 'SELECT * FROM staff_pagination($1, $2, $3, $4, $5)',
+    staffInsert: 'CALL staff_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)',
+    staffUpdate: 'CALL staff_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)',
     staffDelete: 'CALL staff_delete($1)',
 
 /*  ==============================> Channel <================================ */

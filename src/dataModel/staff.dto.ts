@@ -1,4 +1,6 @@
-import { IsString, IsNotEmpty, IsOptional, IsBoolean, IsIn, IsDate } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsBoolean, IsIn, IsDate, IsArray, ValidateNested } from 'class-validator';
+import { ContactChannelDTO } from './contact-channel.dto';
+import { Type } from 'class-transformer';
 
 export class StaffDTO {
     @IsString()
@@ -65,7 +67,12 @@ export class StaffDTO {
     @IsOptional()
     photo_url: string;
 
+    @IsArray()
+    @ValidateNested({ each: true }) // Ensures each element in the array is validated
+    @Type(() => ContactChannelDTO) // Crucial: Tells class-transformer to instantiate ContactChannelDTOs
+    contact_data: ContactChannelDTO[];
+
     @IsBoolean()
     @IsOptional()
-    is_active: string;
+    is_active: boolean;
   }

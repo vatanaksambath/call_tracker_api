@@ -25,7 +25,7 @@ export class UserPermissionService {
     }
 
     const permissions = await this.call_tracker.query(SQL.getUserRolePermissionByID, [userRoleId]);
-    console.log(permissions);
+
     return permissions.some(
       (perm) =>
         perm.menu_id?.trim() === menuId.trim() &&
