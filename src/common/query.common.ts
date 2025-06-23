@@ -1,3 +1,5 @@
+import { channel } from "diagnostics_channel";
+
 export const SQL = {
 
 /*  ==============================> Common <================================ */
@@ -69,7 +71,7 @@ export const SQL = {
     propertyProfileUpdate: 'CALL property_profile_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)',
     propertyProfileDelete: 'CALL property_profile_delete($1)',
 
-/*  ==============================> Property Profile <================================ */
+/*  ==============================> Staff <================================ */
     staffPagination: 'SELECT * FROM staff_pagination($1, $2, $3, $4, $5)',
     staffInsert: 'CALL staff_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)',
     staffUpdate: 'CALL staff_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)',
@@ -81,13 +83,13 @@ export const SQL = {
     channelTypeUpdate: 'CALL channel_type_update($1, $2, $3, $4, $5)',
     channelTypeDelete: 'CALL channel_type_delete($1)',
 
-/*  ==============================> Staff Information <================================ */
-
-    staffInformation : 'SELECT * FROM get_staff_info($1)',
+/*  ==============================> Staff <================================ */
+    leadPagination: 'SELECT * FROM lead_pagination($1, $2, $3, $4, $5)',
+    leadInsert: 'CALL lead_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)',
+    leadUpdate: 'CALL lead_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23)',
+    leadDelete: 'CALL lead_delete($1)',
 
 /*  ==============================> Audit log <================================ */
 
     auditLogInsert  : 'CALL audit_logs_insert( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )'
-    
-
 }

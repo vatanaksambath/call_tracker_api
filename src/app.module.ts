@@ -37,6 +37,8 @@ import { StaffController } from './controller/staff.controller';
 import { StaffService } from './service/staff.service';
 import { ChannelTypeController } from './controller/channel-type.controller';
 import { ChannelTypeService } from './service/channel-type.service';
+import { LeadController } from './controller/lead.controller';
+import { LeadService } from './service/lead.service';
 
 @Module({
   imports: [
@@ -76,6 +78,7 @@ import { ChannelTypeService } from './service/channel-type.service';
     PropertyProfileController,
     StaffController,
     ChannelTypeController,
+    LeadController,
     ],
   providers: [
     AuthGuard,
@@ -96,6 +99,7 @@ import { ChannelTypeService } from './service/channel-type.service';
     PropertyProfileService,
     StaffService,
     ChannelTypeService,
+    LeadService,
   ],
 })
 
