@@ -1,88 +1,193 @@
--- call in store procedure
+-- -- call in store procedure
 
-CALL public.staff_insert(
-    10012,                               -- p_staff_id
-    'STF001',                           -- p_staff_code
-    1,                                  -- p_gender_id
-    1020100,                            -- p_village_id
-    NULL,                               -- p_manager_id
-    'John',                             -- p_first_name
-    'Doe',                              -- p_last_name
-    '1990-01-01',                       -- p_date_of_birth
-    'Manager',                          -- p_position
-    'Finance',                          -- p_department
-    'Full-time',                        -- p_employment_type
-    '2020-01-01',                       -- p_employment_start_date
-    NULL,                               -- p_employment_end_date
-    'Level 2',                          -- p_employment_level
-    '123 Main Street, Phnom Penh',     -- p_current_address
-    ARRAY['/photos/john_doe.jpg'],     -- p_photo_url (text[])
-    'MU_05',
-    '[
-        {
-            "channel_type_id": 2,
-            "contact_values": [
-                {
-                    "user_name": "john.doe",
-                    "contact_number": "012345678",
-                    "remark": "Mobile",
-                    "is_primary": true
-                },
-                {
-                    "user_name": "john.doe",
-                    "contact_number": "john@example.com",
-                    "remark": "Work Email",
-                    "is_primary": false
-                }
-            ]
-        },
-        {
-            "channel_type_id": 2,
-            "contact_values": [
-                {
-                    "user_name": "john.doe",
-                    "contact_number": "TelegramID123",
-                    "remark": "Telegram",
-                    "is_primary": true
-                }
-            ]
-        }
-    ]'::jsonb,                         -- p_contact_data
-    9001                               -- p_created_by
-);
+-- CALL public.staff_insert(
+--     10012,                               -- p_staff_id
+--     'STF001',                           -- p_staff_code
+--     1,                                  -- p_gender_id
+--     1020100,                            -- p_village_id
+--     NULL,                               -- p_manager_id
+--     'John',                             -- p_first_name
+--     'Doe',                              -- p_last_name
+--     '1990-01-01',                       -- p_date_of_birth
+--     'Manager',                          -- p_position
+--     'Finance',                          -- p_department
+--     'Full-time',                        -- p_employment_type
+--     '2020-01-01',                       -- p_employment_start_date
+--     NULL,                               -- p_employment_end_date
+--     'Level 2',                          -- p_employment_level
+--     '123 Main Street, Phnom Penh',     -- p_current_address
+--     ARRAY['/photos/john_doe.jpg'],     -- p_photo_url (text[])
+--     'MU_05',
+--     '[
+--         {
+--             "channel_type_id": 2,
+--             "contact_values": [
+--                 {
+--                     "user_name": "john.doe",
+--                     "contact_number": "012345678",
+--                     "remark": "Mobile",
+--                     "is_primary": true
+--                 },
+--                 {
+--                     "user_name": "john.doe",
+--                     "contact_number": "john@example.com",
+--                     "remark": "Work Email",
+--                     "is_primary": false
+--                 }
+--             ]
+--         },
+--         {
+--             "channel_type_id": 2,
+--             "contact_values": [
+--                 {
+--                     "user_name": "john.doe",
+--                     "contact_number": "TelegramID123",
+--                     "remark": "Telegram",
+--                     "is_primary": true
+--                 }
+--             ]
+--         }
+--     ]'::jsonb,                         -- p_contact_data
+--     9001                               -- p_created_by
+-- );
 
 
-CALL public.staff_update(
-    4,                               -- p_staff_id
-    'STF001',                           -- p_staff_code
-    1,                                  -- p_gender_id
-    1020100,                            -- p_village_id
-    NULL,                               -- p_manager_id
-    'John',                             -- p_first_name
-    'Doe',                              -- p_last_name
-    '1990-01-01',                       -- p_date_of_birth
-    'Manager',                          -- p_position
-    'Finance',                          -- p_department
-    'Full-time',                        -- p_employment_type
-    '2020-01-01',                       -- p_employment_start_date
-    NULL,                               -- p_employment_end_date
-    'Level 2',                          -- p_employment_level
-    '123 Main Street, Phnom Penh',     -- p_current_address
-    ARRAY['/photos/john_doe.jpg'],     -- p_photo_url (text[])
-    TRUE,
-    'MU_05',
-    '[
-        {
-            "channel_type_id": 2,
-            "contact_values": [
-                {
-                    "user_name": "john.doe",
-                    "contact_number": "012345678",
-                    "remark": "Mobile",
-                    "is_primary": true
-                }
-            ]
-        }
-    ]'::jsonb,                         -- p_contact_data
-    9001                               -- p_created_by
-);
+-- CALL public.staff_update(
+--     4,                               -- p_staff_id
+--     'STF001',                           -- p_staff_code
+--     1,                                  -- p_gender_id
+--     1020100,                            -- p_village_id
+--     NULL,                               -- p_manager_id
+--     'John',                             -- p_first_name
+--     'Doe',                              -- p_last_name
+--     '1990-01-01',                       -- p_date_of_birth
+--     'Manager',                          -- p_position
+--     'Finance',                          -- p_department
+--     'Full-time',                        -- p_employment_type
+--     '2020-01-01',                       -- p_employment_start_date
+--     NULL,                               -- p_employment_end_date
+--     'Level 2',                          -- p_employment_level
+--     '123 Main Street, Phnom Penh',     -- p_current_address
+--     ARRAY['/photos/john_doe.jpg'],     -- p_photo_url (text[])
+--     TRUE,
+--     'MU_05',
+--     '[
+--         {
+--             "channel_type_id": 2,
+--             "contact_values": [
+--                 {
+--                     "user_name": "john.doe",
+--                     "contact_number": "012345678",
+--                     "remark": "Mobile",
+--                     "is_primary": true
+--                 }
+--             ]
+--         }
+--     ]'::jsonb,                         -- p_contact_data
+--     9001                               -- p_created_by
+-- );
+
+-- SELECT * FROM tb_lead_history;
+
+-- SELECT 
+-- a.lead_id, a.history_date, e.menu_name, b.menu_trx_id, d.channel_type_name, c.user_name, c.contact_number, c.is_primary 
+-- FROM tb_lead_history a
+-- INNER JOIN tb_contact_channel_history b ON a.history_date = b.history_date
+-- INNER JOIN tb_contact_value_history c ON b.contact_channel_id = c.contact_channel_id
+-- INNER JOIN tb_channel_type d ON b.channel_type_id = d.channel_type_id
+-- INNER JOIN tb_menu e ON b.menu_id = e.menu_id
+-- WHERE a.history_date = '2025-06-24 04:42:05.683002'
+
+-- CALL lead_history_insert(
+--     'LD-000001',
+--     '1',
+--     '1',
+--     '1',
+--     '1020500',
+--     '1',
+--     '1',
+--     '1',
+--     'user first_name',
+--     'user last_name',
+--     '1994-05-01',
+--     'user@mail.com',
+--      null,
+--      null,
+--      null,
+--      null,
+--     '1994-05-01',
+--      null,
+--      null,
+--     'MU_04',
+--    '[
+--         {
+--             "channel_type_id": 2,
+--             "contact_values": [
+--                 {
+--                     "user_name": "john.doe",
+--                     "contact_number": "012345678",
+--                     "remark": "Mobile",
+--                     "is_primary": true
+--                 },
+--                 {
+--                     "user_name": "john.doe",
+--                     "contact_number": "john@example.com",
+--                     "remark": "Work Email",
+--                     "is_primary": false
+--                 }
+--             ]
+--         },
+--         {
+--             "channel_type_id": 2,
+--             "contact_values": [
+--                 {
+--                     "user_name": "john.doe",
+--                     "contact_number": "TelegramID123",
+--                     "remark": "Telegram",
+--                     "is_primary": true
+--                 }
+--             ]
+--         }
+--     ]'::jsonb,                         -- p_contact_data
+--     9001                               -- p_created_by
+-- );
+
+-- CALL call_log_detail_insert(
+--     'CL-000001',
+--     '1',
+--     '2025-06-25 10:00:00',
+--     '2025-06-25 10:30:00',
+--     null,
+--     'MU_02',
+--    '[
+--         {
+--             "channel_type_id": 2,
+--             "contact_values": [
+--                 {
+--                     "user_name": "john.doe",
+--                     "contact_number": "012345678",
+--                     "remark": "Mobile",
+--                     "is_primary": true
+--                 },
+--                 {
+--                     "user_name": "john.doe",
+--                     "contact_number": "john@example.com",
+--                     "remark": "Work Email",
+--                     "is_primary": false
+--                 }
+--             ]
+--         },
+--         {
+--             "channel_type_id": 2,
+--             "contact_values": [
+--                 {
+--                     "user_name": "john.doe",
+--                     "contact_number": "TelegramID123",
+--                     "remark": "Telegram",
+--                     "is_primary": true
+--                 }
+--             ]
+--         }
+--     ]'::jsonb,                         -- p_contact_data
+--     1                               -- p_created_by
+-- );

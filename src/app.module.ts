@@ -39,6 +39,10 @@ import { ChannelTypeController } from './controller/channel-type.controller';
 import { ChannelTypeService } from './service/channel-type.service';
 import { LeadController } from './controller/lead.controller';
 import { LeadService } from './service/lead.service';
+import { SiteVisitController } from './controller/site-visit.controller';
+import { SiteVisitService } from './service/site-visit.service';
+import { CallLogController } from './controller/call-log.controller';
+import { CallLogService } from './service/call-log.service';
 
 @Module({
   imports: [
@@ -79,6 +83,8 @@ import { LeadService } from './service/lead.service';
     StaffController,
     ChannelTypeController,
     LeadController,
+    SiteVisitController,
+    CallLogController,
     ],
   providers: [
     AuthGuard,
@@ -100,6 +106,8 @@ import { LeadService } from './service/lead.service';
     StaffService,
     ChannelTypeService,
     LeadService,
+    SiteVisitService,
+    CallLogService,
   ],
 })
 

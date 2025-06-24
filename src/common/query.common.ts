@@ -83,11 +83,23 @@ export const SQL = {
     channelTypeUpdate: 'CALL channel_type_update($1, $2, $3, $4, $5)',
     channelTypeDelete: 'CALL channel_type_delete($1)',
 
-/*  ==============================> Staff <================================ */
+/*  ==============================> Lead <================================ */
     leadPagination: 'SELECT * FROM lead_pagination($1, $2, $3, $4, $5)',
     leadInsert: 'CALL lead_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)',
     leadUpdate: 'CALL lead_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23)',
     leadDelete: 'CALL lead_delete($1)',
+
+/*  ==============================> Site Visit <================================ */
+    siteVisitPagination: 'SELECT * FROM site_visit_pagination($1, $2, $3, $4, $5)',
+    siteVisitInsert: 'CALL site_visit_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
+    siteVisitUpdate: 'CALL site_visit_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)',
+    siteVisitDelete: 'CALL site_visit_delete($1)',
+
+/*  ==============================> CALL LOG <================================ */
+    callLogPagination: 'SELECT * FROM call_log_pagination($1, $2, $3, $4, $5)',
+    callLogInsert: 'CALL call_log_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
+    callLogUpdate: 'CALL call_log_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)',
+    callLogDelete: 'CALL call_log_delete($1)',
 
 /*  ==============================> Audit log <================================ */
 

@@ -1,0 +1,41 @@
+menu_id,contact_result_name,description,is_active,created_date,created_by
+MU_02,No Response,No Response,TRUE,06/24/2025 12:07,1
+MU_02,Not Interested,Not Interested,TRUE,06/24/2025 12:07,1
+MU_02,Interested ? Requesting Site Visit,Interested ? Requesting Site Visit,TRUE,06/24/2025 12:07,1
+MU_02,Interested ? Waiting for Spouse's Approval,Interested ? Waiting for Spouse's Approval,TRUE,06/24/2025 12:07,1
+MU_02,Deal Closed,Deal Closed,TRUE,06/24/2025 12:07,1
+MU_02,Deal Pending ? Waiting for Bank Loan Approval,Deal Pending ? Waiting for Bank Loan Approval,TRUE,06/24/2025 12:07,1
+MU_02,Requested Price List,Requested Price List,TRUE,06/24/2025 12:07,1
+MU_02,Requested Floor Plan,Requested Floor Plan,TRUE,06/24/2025 12:07,1
+MU_02,Wrong Number / Invalid Contact,Wrong Number / Invalid Contact,TRUE,06/24/2025 12:07,1
+MU_02,Do Not Call Again,Do Not Call Again,TRUE,06/24/2025 12:07,1
+MU_02,Requested Call Back Next Week,Requested Call Back Next Week,TRUE,06/24/2025 12:07,1
+MU_02,Already Purchased from Competitor,Already Purchased from Competitor,TRUE,06/24/2025 12:07,1
+MU_02,Not Available ? Asked to Call Later,Not Available ? Asked to Call Later,TRUE,06/24/2025 12:07,1
+MU_02,Interested ? Wants to Visit Showroom,Interested ? Wants to Visit Showroom,TRUE,06/24/2025 12:07,1
+MU_02,Needs More Time to Decide,Needs More Time to Decide,TRUE,06/24/2025 12:07,1
+MU_02,Forwarded to Family Member,Forwarded to Family Member,TRUE,06/24/2025 12:07,1
+MU_02,Interested in Rent,,TRUE,06/24/2025 12:07,1
+MU_02,Requires Discount or Promotion,Requires Discount or Promotion,TRUE,06/24/2025 12:07,1
+MU_02,Referred to Another Agent,Referred to Another Agent,TRUE,06/24/2025 12:07,1
+MU_02,Contacted ? Not Yet Reviewed Info,Contacted ? Not Yet Reviewed Info,TRUE,06/24/2025 12:07,1
+MU_03,No Response,No Response,TRUE,06/24/2025 12:07,1
+MU_03,Not Interested,Not Interested,TRUE,06/24/2025 12:07,1
+MU_03,Interested ? Requesting Site Visit,Interested ? Requesting Site Visit,TRUE,06/24/2025 12:07,1
+MU_03,Interested ? Waiting for Spouse's Approval,Interested ? Waiting for Spouse's Approval,TRUE,06/24/2025 12:07,1
+MU_03,Deal Closed,Deal Closed,TRUE,06/24/2025 12:07,1
+MU_03,Deal Pending ? Waiting for Bank Loan Approval,Deal Pending ? Waiting for Bank Loan Approval,TRUE,06/24/2025 12:07,1
+MU_03,Requested Price List,Requested Price List,TRUE,06/24/2025 12:07,1
+MU_03,Requested Floor Plan,Requested Floor Plan,TRUE,06/24/2025 12:07,1
+MU_03,Wrong Number / Invalid Contact,Wrong Number / Invalid Contact,TRUE,06/24/2025 12:07,1
+MU_03,Do Not Call Again,Do Not Call Again,TRUE,06/24/2025 12:07,1
+MU_03,Requested Call Back Next Week,Requested Call Back Next Week,TRUE,06/24/2025 12:07,1
+MU_03,Already Purchased from Competitor,Already Purchased from Competitor,TRUE,06/24/2025 12:07,1
+MU_03,Not Available ? Asked to Call Later,Not Available ? Asked to Call Later,TRUE,06/24/2025 12:07,1
+MU_03,Interested ? Wants to Visit Showroom,Interested ? Wants to Visit Showroom,TRUE,06/24/2025 12:07,1
+MU_03,Needs More Time to Decide,Needs More Time to Decide,TRUE,06/24/2025 12:07,1
+MU_03,Forwarded to Family Member,Forwarded to Family Member,TRUE,06/24/2025 12:07,1
+MU_03,Interested in Rent,,TRUE,06/24/2025 12:07,1
+MU_03,Requires Discount or Promotion,Requires Discount or Promotion,TRUE,06/24/2025 12:07,1
+MU_03,Referred to Another Agent,Referred to Another Agent,TRUE,06/24/2025 12:07,1
+MU_03,Contacted ? Not Yet Reviewed Info,Contacted ? Not Yet Reviewed Info,TRUE,06/24/2025 12:07,1

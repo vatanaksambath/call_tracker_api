@@ -80,8 +80,8 @@ export class LeadDTO {
     photo_url: string;
 
     @IsArray()
-    @ValidateNested({ each: true }) // Ensures each element in the array is validated
-    @Type(() => ContactChannelDTO) // Crucial: Tells class-transformer to instantiate ContactChannelDTOs
+    @ValidateNested({ each: true })
+    @Type(() => ContactChannelDTO)
     contact_data: ContactChannelDTO[];
 
     @IsBoolean()
