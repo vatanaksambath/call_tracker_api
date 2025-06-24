@@ -101,6 +101,10 @@ export const SQL = {
     callLogUpdate: 'CALL call_log_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)',
     callLogDelete: 'CALL call_log_delete($1)',
 
+/*  ==============================> CALL LOG DETAIL <================================ */
+    callLogDetailLogInsert: 'CALL call_log_detail_insert($1, $2, $3, $4, $5, $6, $7, $8)',
+    callLogDetailLogUpdate: 'CALL call_log_detail_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+
 /*  ==============================> Audit log <================================ */
 
     auditLogInsert  : 'CALL audit_logs_insert( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )'

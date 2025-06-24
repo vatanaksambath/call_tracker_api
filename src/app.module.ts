@@ -43,6 +43,8 @@ import { SiteVisitController } from './controller/site-visit.controller';
 import { SiteVisitService } from './service/site-visit.service';
 import { CallLogController } from './controller/call-log.controller';
 import { CallLogService } from './service/call-log.service';
+import { CallLogDetailService } from './service/call-log-detail.service';
+import { CallLogDetailController } from './controller/call-log-detail.controller';
 
 @Module({
   imports: [
@@ -85,6 +87,7 @@ import { CallLogService } from './service/call-log.service';
     LeadController,
     SiteVisitController,
     CallLogController,
+    CallLogDetailController,
     ],
   providers: [
     AuthGuard,
@@ -108,6 +111,7 @@ import { CallLogService } from './service/call-log.service';
     LeadService,
     SiteVisitService,
     CallLogService,
+    CallLogDetailService,
   ],
 })
 
