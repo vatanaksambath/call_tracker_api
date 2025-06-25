@@ -45,6 +45,8 @@ import { CallLogController } from './controller/call-log.controller';
 import { CallLogService } from './service/call-log.service';
 import { CallLogDetailService } from './service/call-log-detail.service';
 import { CallLogDetailController } from './controller/call-log-detail.controller';
+import { PhotoUploadService } from './service/photo-upload.service';
+import { PhotoUploadController } from './controller/photo-upload.controller';
 
 @Module({
   imports: [
@@ -88,6 +90,7 @@ import { CallLogDetailController } from './controller/call-log-detail.controller
     SiteVisitController,
     CallLogController,
     CallLogDetailController,
+    PhotoUploadController,
     ],
   providers: [
     AuthGuard,
@@ -112,6 +115,7 @@ import { CallLogDetailController } from './controller/call-log-detail.controller
     SiteVisitService,
     CallLogService,
     CallLogDetailService,
+    PhotoUploadService,
   ],
 })
 
