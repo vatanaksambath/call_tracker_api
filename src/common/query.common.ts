@@ -97,8 +97,8 @@ export const SQL = {
 
 /*  ==============================> CALL LOG <================================ */
     callLogPagination: 'SELECT * FROM call_log_pagination($1, $2, $3, $4, $5)',
-    callLogInsert: 'CALL call_log_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
-    callLogUpdate: 'CALL call_log_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)',
+    callLogInsert: 'CALL call_log_insert($1, $2, $3, $4, $5, $6, $7)',
+    callLogUpdate: 'CALL call_log_update($1, $2, $3, $4, $5, $6, $7, $8, $9)',
     callLogDelete: 'CALL call_log_delete($1)',
 
 /*  ==============================> CALL LOG DETAIL <================================ */

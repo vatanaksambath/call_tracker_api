@@ -5,7 +5,7 @@ import { ContactChannelDTO } from './contact-channel.dto';
 export class CallLogDetailDTO {
 
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     call_log_id: string;
 
     @IsString()
@@ -27,6 +27,10 @@ export class CallLogDetailDTO {
     @IsString()
     @IsOptional()
     remark: string;
+
+    @IsString()
+    @IsNotEmpty()
+    menu_id: string;
 
     @IsArray()
     @ValidateNested({ each: true })

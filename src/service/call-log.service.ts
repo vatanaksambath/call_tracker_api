@@ -22,21 +22,16 @@ export class CallLogService {
         }
     }
 
-    async createCallLog(callLogDTO: CallLogDTO, userId: number, menuId: string) {
+     async createCallLog(callLogDTO: CallLogDTO, userId: number, menuId: string) {
         const parameters = [
             callLogDTO.lead_id,
             callLogDTO.property_profile_id,
             callLogDTO.status_id,
             callLogDTO.purpose,
             callLogDTO.fail_reason,
-            callLogDTO.contact_result_id,
-            callLogDTO.call_start_datetime,
-            callLogDTO.call_end_datetime,
-            callLogDTO.remark,
-            menuId,
-            JSON.stringify(callLogDTO.contact_data),
+            JSON.stringify(callLogDTO.p_call_log_detail),
             userId
-        ]
+        ];
         try {
             const result = await this.call_tracker.query(SQL.callLogInsert, parameters);
             return result;
@@ -54,15 +49,10 @@ export class CallLogService {
             callLogDTO.status_id,
             callLogDTO.purpose,
             callLogDTO.fail_reason,
-            callLogDTO.contact_result_id,
-            callLogDTO.call_start_datetime,
-            callLogDTO.call_end_datetime,
-            callLogDTO.remark,
             callLogDTO.is_active,
-            menuId,
-            JSON.stringify(callLogDTO.contact_data),
+            JSON.stringify(callLogDTO.p_call_log_detail),
             userId
-        ]
+        ];
         try {
             const result = await this.call_tracker.query(SQL.callLogUpdate, parameters);
             return result;
