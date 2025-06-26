@@ -54,7 +54,8 @@ import { PhotoUploadController } from './controller/photo-upload.controller';
       isGlobal: true,
       envFilePath: '.env',
     }),
-    MongooseModule.forRoot('mongodb://localhost:27017/user_management'),
+    // MongooseModule.forRoot('mongodb://localhost:27017/user_management'),
+    MongooseModule.forRoot('mongodb+srv://manan242536:aMK3C8Hwed9CNzBu@cluster0.kkiije8.mongodb.net/user_management'),
     MongooseModule.forFeature([
           { name: UserLogin.name, schema: UserLoginSchema },
           { name: UserActivityLog.name, schema: UserActivityLogSchema },

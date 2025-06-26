@@ -62,7 +62,7 @@ export class AuthService {
 
   private async handleSuccessfulLogin(user: UserLogin, ip: string) {
       await this.loginModel.updateOne({ user_id: user.user_id }, { fail_password_attemp_count: '0' });
-      const payload = { user_id: user.user_id, user_name: user.user_name };
+      const payload = { user_id: user.user_id, user_name: user.user_name, user_email: user.email };
       const accessToken = this.jwtService.sign(payload);
       
       const logData = new this.userActivityLogModel({
