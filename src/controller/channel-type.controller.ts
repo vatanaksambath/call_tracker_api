@@ -75,4 +75,15 @@ export class ChannelTypeController {
             dispatchBadRequestException(error);
         }
     }
+
+    @Get("/channel-type")
+    @HttpCode(200)
+    async getCustomerType(@Req() req) {
+        try {
+            const result = await this.channelTypeService.getChannelType();
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
 }

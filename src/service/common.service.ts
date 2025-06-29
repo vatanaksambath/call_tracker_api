@@ -11,44 +11,6 @@ export class CommonService {
         @InjectDataSource() private call_tracker: DataSource
     ) { }
 
-    // async appAcessPermission (userID: string , type:string ,isSpecail? : boolean) {
-    //     const accessFunction   = await this.permissionService.getAppFunctionDynamic(); 
-    //     const accessPermission = await this.permissionService.getAppFunctionPermission(); 
-        
-    //     const requiredAppFunIds =[ accessFunction[7], accessFunction[1] ]
-    //     let allowedPermissions: any[];
-    //     switch (type) {
-    //         case 'READ':
-    //             allowedPermissions = [
-    //                 accessPermission[0].app_fun_per_id,
-    //                 accessPermission[1].app_fun_per_id,
-    //                 accessPermission[2].app_fun_per_id,
-    //             ];
-    //             break;
-    //         case 'DELETE':
-    //             allowedPermissions = [
-    //                 accessPermission[0].app_fun_per_id,
-    //                 accessPermission[3].app_fun_per_id,
-    //             ];
-    //             break;
-    //         case 'EXPORT':
-    //             allowedPermissions = [true];
-    //             break;
-    //         default:
-    //             allowedPermissions = [
-    //                 accessPermission[0].app_fun_per_id,
-    //                 accessPermission[2].app_fun_per_id,
-    //             ];
-    //             break;
-    //     }
-    
-    //     return this.permissionService.checkAccessAndPermission(
-    //         userID,
-    //         requiredAppFunIds,
-    //         allowedPermissions,
-    //     );
-    // }
-
     async getProvince() {
         try {
             const result = await this.call_tracker.query( SQL.getProvince);
@@ -78,7 +40,25 @@ export class CommonService {
 
     async getVillageByCommuneID(id:number) {
         try {
-            const result = await this.call_tracker.query( SQL.getVillageByCommuneID,[id]);
+            const result = await this.call_tracker.query(SQL.getVillageByCommuneID,[id]);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    async getGender() {
+        try {
+            const result = await this.call_tracker.query(SQL.getGender);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    async getBusiness() {
+        try {
+            const result = await this.call_tracker.query(SQL.getBusiness);
             return result;
         } catch (error) {
             throw new Error(error);

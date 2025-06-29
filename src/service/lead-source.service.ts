@@ -53,5 +53,14 @@ export class LeadSourceService {
             throw new Error(error);
         }
     }
+
+    async getLeadSource() {
+        try {
+            const result = await this.call_tracker.query( SQL.getleadSource);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
 

@@ -53,5 +53,14 @@ export class CustomerTypeService {
             throw new Error(error);
         }
     }
+
+    async getCustomerType() {
+        try {
+            const result = await this.call_tracker.query( SQL.getCustomerType);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
 

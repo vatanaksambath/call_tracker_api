@@ -53,5 +53,14 @@ export class ChannelTypeService {
             throw new Error(error);
         }
     }
+
+    async getChannelType() {
+        try {
+            const result = await this.call_tracker.query( SQL.getChannelType);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
 

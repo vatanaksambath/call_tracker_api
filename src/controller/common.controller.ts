@@ -90,4 +90,27 @@ export class CommonController {
             dispatchBadRequestException(error);
         }
     }
+
+      // @RequirePermission('MU_02', 'PM_02')
+    @Get("/gender")
+    @HttpCode(200)
+    async getGender(@Request() req) {
+        try {
+            const result = await this.commonService.getGender();
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
+
+    @Get("/business")
+    @HttpCode(200)
+    async getBusiness(@Request() req) {
+        try {
+            const result = await this.commonService.getBusiness();
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
 }

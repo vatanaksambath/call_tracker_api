@@ -75,4 +75,15 @@ export class CustomerTypeController {
             dispatchBadRequestException(error);
         }
     }
+
+    @Get("/customer-type")
+    @HttpCode(200)
+    async getCustomerType(@Req() req) {
+        try {
+            const result = await this.customerTypeService.getCustomerType();
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
 }

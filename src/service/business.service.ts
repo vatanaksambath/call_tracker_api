@@ -53,5 +53,14 @@ export class BusinessService {
             throw new Error(error);
         }
     }
+
+    async getBsuiness() {
+        try {
+            const result = await this.call_tracker.query( SQL.getBusiness);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
 

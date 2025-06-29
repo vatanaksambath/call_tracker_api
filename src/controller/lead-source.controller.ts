@@ -75,4 +75,15 @@ export class LeadSourceController {
             dispatchBadRequestException(error);
         }
     }
+
+    @Get("/lead-source")
+    @HttpCode(200)
+    async getCustomerType(@Req() req) {
+        try {
+            const result = await this.leadSourceService.getLeadSource();
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
 }

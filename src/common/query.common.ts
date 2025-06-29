@@ -8,6 +8,8 @@ export const SQL = {
     getDistrictByProviceID  : 'SELECT * FROM get_district_by_province_id($1)',
     getCommuneByDistrictID  : 'SELECT * FROM get_commune_by_district_id($1)',
     getVillageByCommuneID   : 'SELECT * FROM get_village_by_commune_id($1)',
+    getGender : 'SELECT * FROM get_gender()',
+    getBusiness : 'SELECT * FROM get_business()',
 
 /*  ==============================> Role Base Access Control <================================ */
     getRole: 'SELECT * FROM get_role()',
@@ -52,12 +54,14 @@ export const SQL = {
     leadSourceInsert: 'CALL lead_source_insert($1, $2, $3)',
     leadSourceUpdate: 'CALL lead_source_update($1, $2, $3, $4, $5)',
     leadSourceDelete: 'CALL lead_source_delete($1)',
+    getleadSource : 'SELECT * FROM get_lead_source()',
 
 /*  ==============================> Customer Type <================================ */
     customerTypePagination: 'SELECT * FROM  customer_type_pagination($1, $2, $3, $4)',
     customerTypeInsert: 'CALL customer_type_insert($1, $2, $3)',
     customerTypeUpdate: 'CALL customer_type_update($1, $2, $3, $4, $5)',
     customerTypeDelete: 'CALL customer_type_delete($1)',
+    getCustomerType : 'SELECT * FROM get_customer_type()',
 
 /*  ==============================> Property Type <================================ */
     propertyTypePagination: 'SELECT * FROM  property_type_pagination($1, $2, $3, $4)',
@@ -82,6 +86,7 @@ export const SQL = {
     channelTypeInsert: 'CALL channel_type_insert($1, $2, $3)',
     channelTypeUpdate: 'CALL channel_type_update($1, $2, $3, $4, $5)',
     channelTypeDelete: 'CALL channel_type_delete($1)',
+    getChannelType: 'SELECT * FROM get_channel_type()',
 
 /*  ==============================> Lead <================================ */
     leadPagination: 'SELECT * FROM lead_pagination($1, $2, $3, $4, $5)',
