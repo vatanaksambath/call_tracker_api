@@ -1,9 +1,0 @@
-name = "calltracker"
-
-[[d1_databases]]
-binding = "DB"
-database_name = "call_tracker"
-database_id = "e1447d7f-9931-4942-b972-93be7851b7b3"
-
-[vars]
-SECRET = "acb49f8e7e1e4a2cb0c100a2d6744370/call_tracker_secret"
