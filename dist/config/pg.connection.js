@@ -30,6 +30,9 @@ exports.PGConnection = PGConnection = __decorate([
                     password: String(configService.get('POSTGRES_PASSWORD')),
                     database: configService.get('POSTGRES_DATABASE'),
                     entities: [__dirname + '/**/*.entity{.ts,.js}'],
+                    ssl: {
+                        rejectUnauthorized: false,
+                    },
                     synchronize: false,
                 }),
                 inject: [config_1.ConfigService],
