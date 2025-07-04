@@ -3,7 +3,7 @@ import { PropertyProfileService } from '../service/property-profile.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { Request } from 'express';
 import { dispatchBadRequestException } from '../common/error-handler.util';
-import { PropertyProfileDTO } from 'src/dataModel/property-Profile.dto';
+import { PropertyProfileDTO } from 'src/dataModel/property-profile.dto';
 import { CommonDTO } from 'src/dataModel/common.dto';
 import { PermissionGuard } from 'src/auth/decorator/permission.guard';
 import { RequirePermission } from 'src/auth/decorator/permission.decorator';
@@ -34,10 +34,10 @@ export class PropertyProfileController {
     @Post('create')
     @UsePipes(new ValidationPipe())
     @HttpCode(200)
-    async create(@Body() PropertyProfileDTO: PropertyProfileDTO, @Req() req) {
+    async create(@Body() propertyProfileDTO: PropertyProfileDTO, @Req() req) {
         const userId = req.user?.user_id;
        try {
-            const result = this.propertyProfileService.createPropertyProfile(PropertyProfileDTO, userId);
+            const result = this.propertyProfileService.createPropertyProfile(propertyProfileDTO, userId);
             return result;
         } catch (error) {
             dispatchBadRequestException(error);
@@ -50,10 +50,10 @@ export class PropertyProfileController {
     @Put('update')
     @UsePipes(new ValidationPipe())
     @HttpCode(200)
-    async update(@Body() PropertyProfileDTO: PropertyProfileDTO, @Req() req) {
+    async update(@Body() propertyProfileDTO: PropertyProfileDTO, @Req() req) {
         const userId = req.user?.user_id;
         try {
-            const result = this.propertyProfileService.updatePropertyProfile(PropertyProfileDTO, userId);
+            const result = this.propertyProfileService.updatePropertyProfile(propertyProfileDTO, userId);
             return result;
         } catch (error) {
             dispatchBadRequestException(error);
