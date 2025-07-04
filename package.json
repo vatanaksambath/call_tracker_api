@@ -1,10 +1,10 @@
 {
-  "name": "npl_legal_api",
+  "name": "call_tracker_api",
   "version": "0.0.1",
   "description": "",
   "author": "",
   "private": true,
-  "license": "BIDW",
+  "license": "vatanak",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
