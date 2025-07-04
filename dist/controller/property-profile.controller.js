@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const property_profile_service_1 = require("../service/property-profile.service");
 const auth_guard_1 = require("../auth/auth.guard");
 const error_handler_util_1 = require("../common/error-handler.util");
-const property_Profile_dto_1 = require("../dataModel/property-Profile.dto");
+const property_profile_dto_1 = require("../dataModel/property-profile.dto");
 const common_dto_1 = require("../dataModel/common.dto");
 const permission_guard_1 = require("../auth/decorator/permission.guard");
 const permission_decorator_1 = require("../auth/decorator/permission.decorator");
@@ -36,20 +36,20 @@ let PropertyProfileController = class PropertyProfileController {
             (0, error_handler_util_1.dispatchBadRequestException)(error);
         }
     }
-    async create(PropertyProfileDTO, req) {
+    async create(propertyProfileDTO, req) {
         const userId = req.user?.user_id;
         try {
-            const result = this.propertyProfileService.createPropertyProfile(PropertyProfileDTO, userId);
+            const result = this.propertyProfileService.createPropertyProfile(propertyProfileDTO, userId);
             return result;
         }
         catch (error) {
             (0, error_handler_util_1.dispatchBadRequestException)(error);
         }
     }
-    async update(PropertyProfileDTO, req) {
+    async update(propertyProfileDTO, req) {
         const userId = req.user?.user_id;
         try {
-            const result = this.propertyProfileService.updatePropertyProfile(PropertyProfileDTO, userId);
+            const result = this.propertyProfileService.updatePropertyProfile(propertyProfileDTO, userId);
             return result;
         }
         catch (error) {
@@ -91,7 +91,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [property_Profile_dto_1.PropertyProfileDTO, Object]),
+    __metadata("design:paramtypes", [property_profile_dto_1.PropertyProfileDTO, Object]),
     __metadata("design:returntype", Promise)
 ], PropertyProfileController.prototype, "create", null);
 __decorate([
@@ -104,7 +104,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [property_Profile_dto_1.PropertyProfileDTO, Object]),
+    __metadata("design:paramtypes", [property_profile_dto_1.PropertyProfileDTO, Object]),
     __metadata("design:returntype", Promise)
 ], PropertyProfileController.prototype, "update", null);
 __decorate([
