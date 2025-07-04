@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { SQL } from '../common/query.common';
-import { LeadDTO } from 'src/dataModel/Lead.dto';
+import { LeadDTO } from 'src/dataModel/lead.dto';
 import { CommonDTO } from 'src/dataModel/common.dto';
 
 @Injectable()

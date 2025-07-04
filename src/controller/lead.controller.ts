@@ -3,7 +3,7 @@ import { LeadService } from '../service/lead.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { Request } from 'express';
 import { dispatchBadRequestException } from '../common/error-handler.util';
-import { LeadDTO } from 'src/dataModel/Lead.dto';
+import { LeadDTO } from 'src/dataModel/lead.dto';
 import { CommonDTO } from 'src/dataModel/common.dto';
 import { PermissionGuard } from 'src/auth/decorator/permission.guard';
 import { RequirePermission } from 'src/auth/decorator/permission.decorator';
