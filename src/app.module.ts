@@ -66,7 +66,7 @@ import { PhotoUploadController } from './controller/photo-upload.controller';
       useFactory: async () => ({
         // secret: configService.get<string>('JWT_SECRET'),
         secret: '356181248f0e77e95c382df2e5abd86108a7c7abccca340ef1f1118a15235255',
-        signOptions: { expiresIn: '1h' },
+        signOptions: { expiresIn: '8h' },
       }),
       inject: [ConfigService],
     }),

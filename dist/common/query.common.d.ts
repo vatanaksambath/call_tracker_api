@@ -62,6 +62,7 @@ export declare const SQL: {
     leadInsert: string;
     leadUpdate: string;
     leadDelete: string;
+    leadNumber: string;
     siteVisitPagination: string;
     siteVisitInsert: string;
     siteVisitUpdate: string;

@@ -3,10 +3,11 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { PhotoUploadService } from '../service/photo-upload.service';
+import { LeadService } from 'src/service/lead.service';
 
 @Controller('files')
 export class PhotoUploadController {
-  constructor(private readonly photoUploadService: PhotoUploadService) {}
+  constructor(private readonly photoUploadService: PhotoUploadService, private readonly leadService: LeadService) {}
   
   @Post('upload-one-photo') 
   @UseInterceptors(FileInterceptor('photo', { 
@@ -32,6 +33,10 @@ export class PhotoUploadController {
   ) {
     if (!photo) {
       return { message: 'No file uploaded.' };
+    }
+    if (!photoId) {
+      const leadNumber = await this.leadService.leadNumber('LD');
+      photoId = leadNumber[0].id;
     }
     const imageUrl = await this.photoUploadService.uploadOneFileToCloud(photo, photoId, menu);
     return { imageUrl, message: 'Photo uploaded successfully!' };

@@ -7,5 +7,6 @@ export declare class LeadService {
     LeadPagination(commonDTO: CommonDTO, userId: number): Promise<any>;
     createLead(leadDTO: LeadDTO, userId: number, menuId: string): Promise<any>;
     updateLead(leadDTO: LeadDTO, userId: number, menuId: string): Promise<any>;
+    leadNumber(prefix: string): Promise<any>;
     deleteLead(id: number | string): Promise<any>;
 }

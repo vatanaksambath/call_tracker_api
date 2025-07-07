@@ -98,6 +98,16 @@ let LeadService = class LeadService {
             throw new Error(error);
         }
     }
+    async leadNumber(prefix) {
+        const parameters = [prefix];
+        try {
+            const result = await this.call_tracker.query(query_common_1.SQL.leadNumber, parameters);
+            return result;
+        }
+        catch (error) {
+            throw new Error(error);
+        }
+    }
     async deleteLead(id) {
         try {
             const result = await this.call_tracker.query(query_common_1.SQL.leadDelete, [id]);

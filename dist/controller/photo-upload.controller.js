@@ -18,14 +18,21 @@ const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const path_1 = require("path");
 const photo_upload_service_1 = require("../service/photo-upload.service");
+const lead_service_1 = require("../service/lead.service");
 let PhotoUploadController = class PhotoUploadController {
     photoUploadService;
-    constructor(photoUploadService) {
+    leadService;
+    constructor(photoUploadService, leadService) {
         this.photoUploadService = photoUploadService;
+        this.leadService = leadService;
     }
     async uploadSinglePhoto(photo, photoId, menu) {
         if (!photo) {
             return { message: 'No file uploaded.' };
+        }
+        if (!photoId) {
+            const leadNumber = await this.leadService.leadNumber('LD');
+            photoId = leadNumber[0].id;
         }
         const imageUrl = await this.photoUploadService.uploadOneFileToCloud(photo, photoId, menu);
         return { imageUrl, message: 'Photo uploaded successfully!' };
@@ -91,6 +98,6 @@ __decorate([
 ], PhotoUploadController.prototype, "uploadMultiplePhotos", null);
 exports.PhotoUploadController = PhotoUploadController = __decorate([
     (0, common_1.Controller)('files'),
-    __metadata("design:paramtypes", [photo_upload_service_1.PhotoUploadService])
+    __metadata("design:paramtypes", [photo_upload_service_1.PhotoUploadService, lead_service_1.LeadService])
 ], PhotoUploadController);
 //# sourceMappingURL=photo-upload.controller.js.map

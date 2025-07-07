@@ -1,7 +1,9 @@
 import { PhotoUploadService } from '../service/photo-upload.service';
+import { LeadService } from 'src/service/lead.service';
 export declare class PhotoUploadController {
     private readonly photoUploadService;
-    constructor(photoUploadService: PhotoUploadService);
+    private readonly leadService;
+    constructor(photoUploadService: PhotoUploadService, leadService: LeadService);
     uploadSinglePhoto(photo: Express.Multer.File, photoId: string, menu: string): Promise<{
         message: string;
         imageUrl?: undefined;

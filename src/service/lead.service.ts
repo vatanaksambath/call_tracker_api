@@ -90,6 +90,16 @@ export class LeadService {
         }
     }
 
+    async leadNumber(prefix: string) {
+        const parameters = [prefix];
+        try {
+            const result = await this.call_tracker.query(SQL.leadNumber, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     async deleteLead(id: number | string) {
         try {
             const result = await this.call_tracker.query(SQL.leadDelete, [id]);
