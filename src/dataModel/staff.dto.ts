@@ -63,7 +63,8 @@ export class StaffDTO {
     @IsOptional()
     current_address: string;
 
-    @IsString()
+    @IsArray()
+    @IsString({ each: true })
     @IsOptional()
     photo_url: string;
 

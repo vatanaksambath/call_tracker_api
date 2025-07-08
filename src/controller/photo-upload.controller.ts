@@ -31,11 +31,21 @@ export class PhotoUploadController {
     @Body('photoId') photoId: string,
     @Body('menu') menu: string,
   ) {
+    let prefix = '';
     if (!photo) {
       return { message: 'No file uploaded.' };
     }
+
+    if(menu === 'lead') {
+      prefix = 'LD'
+    }else if(menu === 'Staff') {
+      prefix = '';
+    }else{
+      prefix = 'ST';
+    }
+
     if (!photoId) {
-      const leadNumber = await this.leadService.leadNumber('LD');
+      const leadNumber = await this.leadService.leadNumber(prefix);
       photoId = leadNumber[0].id;
     }
     const imageUrl = await this.photoUploadService.uploadOneFileToCloud(photo, photoId, menu);
