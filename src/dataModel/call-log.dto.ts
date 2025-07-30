@@ -1,6 +1,5 @@
 import { Type } from 'class-transformer';
 import { IsString, IsNotEmpty, IsOptional, IsBoolean, IsIn, IsArray, ValidateNested } from 'class-validator';
-import { ContactChannelDTO } from './contact-channel.dto';
 import { CallLogDetailDTO } from './call-log-detail.dto';
 
 export class CallLogDTO {
@@ -29,23 +28,9 @@ export class CallLogDTO {
     @IsOptional()
     fail_reason: string;
 
-    // CALL DETAIL
-
-    // @IsString()
-    // @IsNotEmpty()
-    // contact_result_id: string;
-
-    // @IsString()
-    // @IsNotEmpty()
-    // call_start_datetime: string;
-
-    // @IsString()
-    // @IsNotEmpty()
-    // call_end_datetime: string;
-
-    // @IsString()
-    // @IsOptional()
-    // remark: string;
+    @IsBoolean()
+    @IsNotEmpty()
+    is_follow_up: boolean;
 
     @IsArray()
     @ValidateNested({ each: true })

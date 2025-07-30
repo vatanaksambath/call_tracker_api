@@ -22,6 +22,16 @@ export class LeadService {
         }
     }
 
+    async LeadSummary(userId: number) {
+        const parameters = [userId];
+        try {
+            const result = await this.call_tracker.query(SQL.leadSummary, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     async createLead(leadDTO: LeadDTO, userId: number, menuId: string) {
         const parameters = [
             leadDTO.gender_id,

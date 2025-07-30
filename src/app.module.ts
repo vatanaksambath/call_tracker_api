@@ -47,6 +47,8 @@ import { CallLogDetailService } from './service/call-log-detail.service';
 import { CallLogDetailController } from './controller/call-log-detail.controller';
 import { PhotoUploadService } from './service/photo-upload.service';
 import { PhotoUploadController } from './controller/photo-upload.controller';
+import { DashboardController } from './controller/dashboard.controller';
+import { DashboardService } from './service/dashboard.service';
 
 @Module({
   imports: [
@@ -92,6 +94,7 @@ import { PhotoUploadController } from './controller/photo-upload.controller';
     CallLogController,
     CallLogDetailController,
     PhotoUploadController,
+    DashboardController,
     ],
   providers: [
     AuthGuard,
@@ -117,6 +120,7 @@ import { PhotoUploadController } from './controller/photo-upload.controller';
     CallLogService,
     CallLogDetailService,
     PhotoUploadService,
+    DashboardService,
   ],
 })
 

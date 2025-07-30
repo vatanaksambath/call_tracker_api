@@ -22,6 +22,15 @@ export class CallLogService {
         }
     }
 
+    async CallLogSummary(userId: number) {
+        try {
+            const result = await this.call_tracker.query(SQL.callLogSummary, [userId]);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+    
      async createCallLog(callLogDTO: CallLogDTO, userId: number, menuId: string) {
         const parameters = [
             callLogDTO.lead_id,
@@ -29,6 +38,7 @@ export class CallLogService {
             callLogDTO.status_id,
             callLogDTO.purpose,
             callLogDTO.fail_reason,
+            callLogDTO.is_follow_up,
             JSON.stringify(callLogDTO.p_call_log_detail),
             userId
         ];
@@ -49,6 +59,7 @@ export class CallLogService {
             callLogDTO.status_id,
             callLogDTO.purpose,
             callLogDTO.fail_reason,
+            callLogDTO.is_follow_up,
             callLogDTO.is_active,
             JSON.stringify(callLogDTO.p_call_log_detail),
             userId

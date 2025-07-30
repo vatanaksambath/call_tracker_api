@@ -23,6 +23,16 @@ export class StaffService {
         }
     }
 
+    async StaffSummary(userId: number) {
+        const parameters = [userId];
+        try {
+            const result = await this.call_tracker.query(SQL.staffSummary, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     async createStaff(staffDTO: StaffDTO, userId: number, menuId: string) {
         const parameters = [
             staffDTO.staff_id,

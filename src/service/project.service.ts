@@ -13,9 +13,18 @@ export class ProjectService {
     ) { }
 
     async projectPagination(commonDTO: CommonDTO, userId: number) {
-        const parameters = [commonDTO.page_number, commonDTO.page_size, commonDTO.search_type, commonDTO.query_search]
+        const parameters = [commonDTO.page_number, commonDTO.page_size, commonDTO.search_type, commonDTO.query_search, userId]
         try {
             const result = await this.call_tracker.query(SQL.projectPagination, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    async projectSummary(userId: number) {
+        try {
+            const result = await this.call_tracker.query(SQL.projectSummary, [userId]);
             return result;
         } catch (error) {
             throw new Error(error);

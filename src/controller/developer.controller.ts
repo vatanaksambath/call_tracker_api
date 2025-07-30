@@ -29,6 +29,22 @@ export class DeveloperController {
     }
 
     @UseGuards(PermissionGuard)
+    @RequirePermission('MU_12', 'PM_02')
+    @UseGuards(AuthGuard)
+    @Get('summary')
+    @UsePipes(new ValidationPipe())
+    @HttpCode(200)
+    async summary(@Req() req) {
+        const userId = req.user?.user_id;
+       try {
+            const result = this.developerService.developerSummary(userId);
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
+
+    @UseGuards(PermissionGuard)
     @RequirePermission('MU_12', 'PM_01')
     @UseGuards(AuthGuard)
     @Post('create')

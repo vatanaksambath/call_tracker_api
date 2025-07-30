@@ -13,9 +13,18 @@ export class PropertyProfileService {
     ) { }
 
     async PropertyProfilePagination(commonDTO: CommonDTO, userId: number) {
-        const parameters = [commonDTO.page_number, commonDTO.page_size, commonDTO.search_type, commonDTO.query_search]
+        const parameters = [commonDTO.page_number, commonDTO.page_size, commonDTO.search_type, commonDTO.query_search, userId]
         try {
             const result = await this.call_tracker.query(SQL.propertyProfilePagination, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    async PropertyProfileSummary(userId: number) {
+        try {
+            const result = await this.call_tracker.query(SQL.propertyProfileSummary, [userId]);
             return result;
         } catch (error) {
             throw new Error(error);
@@ -34,7 +43,12 @@ export class PropertyProfileService {
             propertyProfileDTO.address,
             propertyProfileDTO.width,
             propertyProfileDTO.length,
-            propertyProfileDTO.remark,
+            propertyProfileDTO.price,
+            propertyProfileDTO.bedroom,
+            propertyProfileDTO.bathroom,
+            propertyProfileDTO.year_built,       
+            propertyProfileDTO.description,
+            propertyProfileDTO.feature,
             userId
         ]
         try {
@@ -59,7 +73,12 @@ export class PropertyProfileService {
             propertyProfileDTO.address,
             propertyProfileDTO.width,
             propertyProfileDTO.length,
-            propertyProfileDTO.remark,
+            propertyProfileDTO.price,
+            propertyProfileDTO.bedroom,
+            propertyProfileDTO.bathroom,  
+            propertyProfileDTO.year_built,     
+            propertyProfileDTO.description,
+            propertyProfileDTO.feature,
             propertyProfileDTO.is_active,
             userId
         ]

@@ -1,5 +1,3 @@
-import { channel } from "diagnostics_channel";
-
 export const SQL = {
 
 /*  ==============================> Common <================================ */
@@ -26,7 +24,8 @@ export const SQL = {
     getUserRolePermissionByID: 'SELECT * FROM get_user_role_permission_by_id($1)',
 
 /*  ==============================> Developer <================================ */
-    developerPagination: 'SELECT * FROM developer_pagination($1, $2, $3, $4)',
+    developerPagination: 'SELECT * FROM developer_pagination($1, $2, $3, $4, $5)',
+    developerSummary: 'SELECT * FROM developer_summary($1)',
     developerInsert: 'CALL developer_insert($1, $2, $3)',
     developerUpdate: 'CALL developer_update($1, $2, $3, $4, $5)',
     developerDelete: 'CALL developer_delete($1)',
@@ -38,7 +37,8 @@ export const SQL = {
     projectOwnerDelete: 'CALL project_owner_delete($1)',
 
 /*  ==============================> Project <================================ */
-    projectPagination: 'SELECT * FROM project_pagination($1, $2, $3, $4)',
+    projectPagination: 'SELECT * FROM project_pagination($1, $2, $3, $4, $5)',
+    projectSummary: 'SELECT * FROM project_summary($1)',
     projectInsert: 'CALL project_insert($1, $2, $3, $4, $5)',
     projectUpdate: 'CALL project_update($1, $2, $3, $4, $5, $6, $7)',
     projectDelete: 'CALL project_delete($1)',
@@ -70,13 +70,15 @@ export const SQL = {
     propertyTypeDelete: 'CALL property_type_delete($1)',
 
 /*  ==============================> Property Profile <================================ */
-    propertyProfilePagination: 'SELECT * FROM  property_profile_pagination($1, $2, $3, $4)',
-    propertyProfileInsert: 'CALL property_profile_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
-    propertyProfileUpdate: 'CALL property_profile_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)',
+    propertyProfilePagination: 'SELECT * FROM  property_profile_pagination($1, $2, $3, $4, $5)',
+    propertyProfileSummary: 'SELECT * FROM property_profile_summary($1)',
+    propertyProfileInsert: 'CALL property_profile_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)',
+    propertyProfileUpdate: 'CALL property_profile_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)',
     propertyProfileDelete: 'CALL property_profile_delete($1)',
 
 /*  ==============================> Staff <================================ */
     staffPagination: 'SELECT * FROM staff_pagination($1, $2, $3, $4, $5)',
+    staffSummary: 'SELECT * FROM staff_summary($1)',
     staffInsert: 'CALL staff_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)',
     staffUpdate: 'CALL staff_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)',
     staffDelete: 'CALL staff_delete($1)',
@@ -90,6 +92,7 @@ export const SQL = {
 
 /*  ==============================> Lead <================================ */
     leadPagination: 'SELECT * FROM lead_pagination($1, $2, $3, $4, $5)',
+    leadSummary: 'SELECT * FROM lead_summary($1)',
     leadInsert: 'CALL lead_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)',
     leadUpdate: 'CALL lead_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23)',
     leadDelete: 'CALL lead_delete($1)',
@@ -103,15 +106,18 @@ export const SQL = {
 
 /*  ==============================> CALL LOG <================================ */
     callLogPagination: 'SELECT * FROM call_log_pagination($1, $2, $3, $4, $5)',
-    callLogInsert: 'CALL call_log_insert($1, $2, $3, $4, $5, $6, $7)',
-    callLogUpdate: 'CALL call_log_update($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+    callLogSummary: 'SELECT * FROM call_log_summary($1)',
+    callLogInsert: 'CALL call_log_insert($1, $2, $3, $4, $5, $6, $7, $8)',
+    callLogUpdate: 'CALL call_log_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
     callLogDelete: 'CALL call_log_delete($1)',
 
 /*  ==============================> CALL LOG DETAIL <================================ */
     callLogDetailLogInsert: 'CALL call_log_detail_insert($1, $2, $3, $4, $5, $6, $7, $8)',
     callLogDetailLogUpdate: 'CALL call_log_detail_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
 
-/*  ==============================> Audit log <================================ */
+/*  ==============================> DASHBOARD <================================ */
+    dashboardSummary: 'SELECT * FROM dashboard_summary($1)',
 
+/*  ==============================> Audit log <================================ */
     auditLogInsert  : 'CALL audit_logs_insert( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )'
 }
