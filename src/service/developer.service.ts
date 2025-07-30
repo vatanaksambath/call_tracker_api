@@ -13,9 +13,18 @@ export class DeveloperService {
     ) { }
 
     async developerPagination(commonDTO: CommonDTO, userId: number) {
-        const parameters = [commonDTO.page_number, commonDTO.page_size, commonDTO.search_type, commonDTO.query_search]
+        const parameters = [commonDTO.page_number, commonDTO.page_size, commonDTO.search_type, commonDTO.query_search, userId]
         try {
             const result = await this.call_tracker.query(SQL.developerPagination, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+    
+    async developerSummary(userId: number) {
+        try {
+            const result = await this.call_tracker.query(SQL.developerSummary, [userId]);
             return result;
         } catch (error) {
             throw new Error(error);

@@ -29,6 +29,22 @@ export class ProjectController {
     }
 
     @UseGuards(PermissionGuard)
+    @RequirePermission('MU_10', 'PM_02')
+    @UseGuards(AuthGuard)
+    @Get('summary')
+    @UsePipes(new ValidationPipe())
+    @HttpCode(200)
+    async summary(@Req() req) {
+        const userId = req.user?.user_id;
+       try {
+            const result = this.projectService.projectSummary(userId);
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
+
+    @UseGuards(PermissionGuard)
     @RequirePermission('MU_10', 'PM_01')
     @UseGuards(AuthGuard)
     @Post('create')

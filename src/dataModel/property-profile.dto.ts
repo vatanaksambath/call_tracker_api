@@ -46,8 +46,28 @@ export class PropertyProfileDTO {
     length: string;
 
     @IsString()
+    @IsNotEmpty()
+    price: number;
+
+    @IsString()
+    @IsNotEmpty()
+    bedroom: number;
+
+    @IsString()
+    @IsNotEmpty()
+    bathroom: number;
+
+    @IsString()
+    @IsNotEmpty()
+    year_built: string;
+
+    @IsString()
     @IsOptional()
-    remark: string;
+    description: string;
+
+    @IsString()
+    @IsNotEmpty()
+    feature: string
 
     @IsBoolean()
     @IsOptional()
