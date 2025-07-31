@@ -22,6 +22,18 @@ export class ChannelTypeService {
         }
     }
 
+    async ChannelTypeSummary(userId: number) {
+        try {
+             if (!userId) {
+                throw new Error('User ID is required');
+            }
+            const result = await this.call_tracker.query(SQL.channelTypeSummary, [userId]);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     async createChannelType(channelTypeDTO: ChannelTypeDTO, userId: number) {
         const parameters = [channelTypeDTO.channel_type_name, channelTypeDTO.channel_type_description, userId]
         try {

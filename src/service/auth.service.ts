@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException, BadRequestException, ConflictException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, BadRequestException, ConflictException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, now } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
@@ -10,6 +10,7 @@ import { UserLogin } from '../auth/schema/user-login.schema';
 import { UserActivityLog } from '../auth/schema//user-activity-log.schema';
 import { ForgetPasswordLog } from '../auth/schema//forget-password-log.schema';
 import { CreateUserDto } from 'src/dataModel/auth/create-user.dto';
+import { UpdateUserDto } from 'src/dataModel/update-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -125,8 +126,41 @@ export class AuthService {
     
     return newUser.save();
   }
+
+  async updateUser(userId: string, updateUserDto: UpdateUserDto): Promise<UserLogin> {
+    const updateData: any = { ...updateUserDto };
+
+    if (updateUserDto.password) {
+        updateData.password = await bcrypt.hash(updateUserDto.password, 10);
+    }
+
+    updateData.last_updated = new Date().toLocaleString();
+    if (updateUserDto.updated_by) {
+        updateData.last_update_by = updateUserDto.updated_by;
+    }
+
+    const updatedUser = await this.loginModel.findOneAndUpdate(
+        { user_id: userId },
+        { $set: updateData },
+        { new: true }
+    ).exec();
+
+    if (!updatedUser) {
+        throw new NotFoundException(`User with ID "${userId}" not found.`);
+    }
+
+    return updatedUser;
+  }
   
-  async getProfile(user: any) {
-    return { message: 'Successfully accessed protected profile data.', user };
+  async getProfileById(userId: string): Promise<UserLogin> {
+    const user = await this.loginModel.findOne({ user_id: userId }).exec();
+    if (!user) {
+        throw new NotFoundException(`User with ID "${userId}" not found.`);
+    }
+    return user;
+  }
+
+  async getAllProfile(): Promise<UserLogin[]> {
+    return this.loginModel.find().exec();
   }
 }

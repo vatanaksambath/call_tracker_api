@@ -19,6 +19,10 @@ export class PropertyProfileDTO {
 
     @IsString()
     @IsNotEmpty()
+    property_status_id: string;
+
+    @IsString()
+    @IsNotEmpty()
     village_id: string;
 
     @IsString()

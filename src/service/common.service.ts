@@ -64,4 +64,16 @@ export class CommonService {
             throw new Error(error);
         }
     }
+
+    async addressSummary(userId: number) {
+        try {
+            if (!userId) {
+                throw new Error('User ID is required');
+            }
+            const result = await this.call_tracker.query(SQL.addressSummary, [userId]);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }

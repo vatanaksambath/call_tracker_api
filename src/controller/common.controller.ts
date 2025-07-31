@@ -31,11 +31,6 @@ export class CommonController {
     @HttpCode(200)
     async getProvince(@Request() req) {
         try {
-            
-            // const access = await this.commonService.appAcessPermission(req.user?.user_id,'READ',false)
-            // if ( !access.status ) {
-            //     throw new ForbiddenException(access.message);
-            // }
             const result = await this.commonService.getProvince();
             return result;
         } catch (error) {
@@ -47,11 +42,6 @@ export class CommonController {
     @HttpCode(200)
     async getDistrictByProvinceID(@Param('id') id: number,@Request() req) {
         try {
-            
-            // const access = await this.commonService.appAcessPermission(req.user?.user_id,'READ',false)
-            // if ( !access.status ) {
-            //     throw new ForbiddenException(access.message);
-            // }
             const result = await this.commonService.getDistrictByProvinceID(id);
             return result;
         } catch (error) {
@@ -63,11 +53,6 @@ export class CommonController {
     @HttpCode(200)
     async getCommuneByDistrictID(@Param('id') id: number,@Request() req) {
         try {
-            
-            // const access = await this.commonService.appAcessPermission(req.user?.user_id,'READ',false)
-            // if ( !access.status ) {
-            //     throw new ForbiddenException(access.message);
-            // }
             const result = await this.commonService.getCommuneByDistrictID(id);
             return result;
         } catch (error) {
@@ -79,11 +64,6 @@ export class CommonController {
     @HttpCode(200)
     async getVillageByCommuneID(@Param('id') id: number,@Request() req) {
         try {
-            
-            // const access = await this.commonService.appAcessPermission(req.user?.user_id,'READ',false)
-            // if ( !access.status ) {
-            //     throw new ForbiddenException(access.message);
-            // }
             const result = await this.commonService.getVillageByCommuneID(id);
             return result;
         } catch (error) {
@@ -108,6 +88,18 @@ export class CommonController {
     async getBusiness(@Request() req) {
         try {
             const result = await this.commonService.getBusiness();
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
+
+    @Get("address/summary")
+    @HttpCode(200)
+    async summary(@Request() req) {
+        try {
+            const userId = req.user?.user_id;
+            const result = await this.commonService.addressSummary(userId);
             return result;
         } catch (error) {
             dispatchBadRequestException(error);

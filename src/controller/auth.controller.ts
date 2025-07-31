@@ -41,7 +41,13 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Get('profile')
-  getProfile(@NestRequest() req) {
-    return this.authService.getProfile(req.user);
+  getProfileById(@NestRequest() req) {
+    return this.authService.getProfileById(req.user.user_id); 
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('all-profile')
+  getAllProfile() {
+    return this.authService.getAllProfile();
   }
 }

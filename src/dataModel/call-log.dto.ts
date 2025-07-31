@@ -28,6 +28,10 @@ export class CallLogDTO {
     @IsOptional()
     fail_reason: string;
 
+    @IsString()
+    @IsOptional()
+    follow_up_date: string;
+
     @IsBoolean()
     @IsNotEmpty()
     is_follow_up: boolean;

@@ -1,0 +1,6 @@
+property_status,property_status_description,is_active,created_by,created_date
+Available,Available,TRUE,1,07/31/2025 14:28
+Reserved,Reserved,TRUE,1,07/31/2025 14:28
+Sold,Sold,TRUE,1,07/31/2025 14:28
+Under Construction,Under Construction,TRUE,1,07/31/2025 14:28
+Maintenance,Maintenance,TRUE,1,07/31/2025 14:28

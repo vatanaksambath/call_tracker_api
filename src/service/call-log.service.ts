@@ -38,6 +38,7 @@ export class CallLogService {
             callLogDTO.status_id,
             callLogDTO.purpose,
             callLogDTO.fail_reason,
+            callLogDTO.follow_up_date,
             callLogDTO.is_follow_up,
             JSON.stringify(callLogDTO.p_call_log_detail),
             userId
@@ -59,6 +60,7 @@ export class CallLogService {
             callLogDTO.status_id,
             callLogDTO.purpose,
             callLogDTO.fail_reason,
+            callLogDTO.follow_up_date,
             callLogDTO.is_follow_up,
             callLogDTO.is_active,
             JSON.stringify(callLogDTO.p_call_log_detail),

@@ -1,3 +1,5 @@
+import { channel } from "diagnostics_channel";
+
 export const SQL = {
 
 /*  ==============================> Common <================================ */
@@ -8,6 +10,7 @@ export const SQL = {
     getVillageByCommuneID   : 'SELECT * FROM get_village_by_commune_id($1)',
     getGender : 'SELECT * FROM get_gender()',
     getBusiness : 'SELECT * FROM get_business()',
+    addressSummary: 'SELECT * FROM address_summary($1)',
 
 /*  ==============================> Role Base Access Control <================================ */
     getRole: 'SELECT * FROM get_role()',
@@ -72,8 +75,8 @@ export const SQL = {
 /*  ==============================> Property Profile <================================ */
     propertyProfilePagination: 'SELECT * FROM  property_profile_pagination($1, $2, $3, $4, $5)',
     propertyProfileSummary: 'SELECT * FROM property_profile_summary($1)',
-    propertyProfileInsert: 'CALL property_profile_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)',
-    propertyProfileUpdate: 'CALL property_profile_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)',
+    propertyProfileInsert: 'CALL property_profile_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)',
+    propertyProfileUpdate: 'CALL property_profile_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)',
     propertyProfileDelete: 'CALL property_profile_delete($1)',
 
 /*  ==============================> Staff <================================ */
@@ -85,6 +88,7 @@ export const SQL = {
 
 /*  ==============================> Channel <================================ */
     channelTypePagination: 'SELECT * FROM channel_type_pagination($1, $2, $3, $4)',
+    channelTypeSummary: 'SELECT * FROM channel_type_summary($1)',
     channelTypeInsert: 'CALL channel_type_insert($1, $2, $3)',
     channelTypeUpdate: 'CALL channel_type_update($1, $2, $3, $4, $5)',
     channelTypeDelete: 'CALL channel_type_delete($1)',
@@ -107,8 +111,8 @@ export const SQL = {
 /*  ==============================> CALL LOG <================================ */
     callLogPagination: 'SELECT * FROM call_log_pagination($1, $2, $3, $4, $5)',
     callLogSummary: 'SELECT * FROM call_log_summary($1)',
-    callLogInsert: 'CALL call_log_insert($1, $2, $3, $4, $5, $6, $7, $8)',
-    callLogUpdate: 'CALL call_log_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+    callLogInsert: 'CALL call_log_insert($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+    callLogUpdate: 'CALL call_log_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
     callLogDelete: 'CALL call_log_delete($1)',
 
 /*  ==============================> CALL LOG DETAIL <================================ */
