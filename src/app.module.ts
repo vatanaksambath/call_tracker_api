@@ -49,6 +49,8 @@ import { PhotoUploadService } from './service/photo-upload.service';
 import { PhotoUploadController } from './controller/photo-upload.controller';
 import { DashboardController } from './controller/dashboard.controller';
 import { DashboardService } from './service/dashboard.service';
+import { PropertyStatusController } from './controller/property-status.controller';
+import { PropertyStatusService } from './service/property-status.service';
 
 @Module({
   imports: [
@@ -95,6 +97,7 @@ import { DashboardService } from './service/dashboard.service';
     CallLogDetailController,
     PhotoUploadController,
     DashboardController,
+    PropertyStatusController,
     ],
   providers: [
     AuthGuard,
@@ -121,6 +124,7 @@ import { DashboardService } from './service/dashboard.service';
     CallLogDetailService,
     PhotoUploadService,
     DashboardService,
+    PropertyStatusService,
   ],
 })
 

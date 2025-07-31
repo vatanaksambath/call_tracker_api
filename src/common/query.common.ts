@@ -122,6 +122,12 @@ export const SQL = {
 /*  ==============================> DASHBOARD <================================ */
     dashboardSummary: 'SELECT * FROM dashboard_summary($1)',
 
+/*  ==============================> PROPERTY STATUS <================================ */
+    propertyStatusPagination: 'SELECT * FROM property_status_pagination($1, $2, $3, $4)',
+    propertyStatusInsert: 'CALL property_status_insert($1, $2, $3)',
+    propertyStatusUpdate: 'CALL property_status_update($1, $2, $3, $4, $5)',
+    propertyStatusDelete: 'CALL property_status_delete($1)',
+
 /*  ==============================> Audit log <================================ */
     auditLogInsert  : 'CALL audit_logs_insert( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )'
 }
