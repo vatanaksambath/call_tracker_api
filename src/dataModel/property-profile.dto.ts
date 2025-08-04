@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsBoolean, IsIn } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsBoolean, IsIn, IsArray } from 'class-validator';
 
 export class PropertyProfileDTO {
     @IsString()
@@ -71,7 +71,12 @@ export class PropertyProfileDTO {
 
     @IsString()
     @IsNotEmpty()
-    feature: string
+    feature: string;
+
+    @IsArray()
+    @IsString({ each: true })
+    @IsOptional()
+    photo_url: string;
 
     @IsBoolean()
     @IsOptional()

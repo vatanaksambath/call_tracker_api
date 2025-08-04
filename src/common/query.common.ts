@@ -75,8 +75,8 @@ export const SQL = {
 /*  ==============================> Property Profile <================================ */
     propertyProfilePagination: 'SELECT * FROM  property_profile_pagination($1, $2, $3, $4, $5)',
     propertyProfileSummary: 'SELECT * FROM property_profile_summary($1)',
-    propertyProfileInsert: 'CALL property_profile_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)',
-    propertyProfileUpdate: 'CALL property_profile_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)',
+    propertyProfileInsert: 'CALL property_profile_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)',
+    propertyProfileUpdate: 'CALL property_profile_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)',
     propertyProfileDelete: 'CALL property_profile_delete($1)',
 
 /*  ==============================> Staff <================================ */
@@ -121,8 +121,8 @@ export const SQL = {
 
 /*  ==============================> CONTACT RESULT <================================ */
     contactResultPagination: 'SELECT * FROM contact_result_pagination($1, $2, $3, $4, $5)',
-    contactResultInsert: 'CALL contact_result_insert($1, $2, $3)',
-    contactResultUpdate: 'CALL contact_result_update($1, $2, $3, $4, $5)',
+    contactResultInsert: 'CALL contact_result_insert($1, $2, $3, $4)',
+    contactResultUpdate: 'CALL contact_result_update($1, $2, $3, $4, $5, $6)',
     contactResultDelete: 'CALL contact_result_delete($1)',
 
 /*  ==============================> DASHBOARD <================================ */

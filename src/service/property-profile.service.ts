@@ -50,6 +50,7 @@ export class PropertyProfileService {
             propertyProfileDTO.year_built,       
             propertyProfileDTO.description,
             propertyProfileDTO.feature,
+            propertyProfileDTO.photo_url,
             userId
         ]
         try {
@@ -81,6 +82,7 @@ export class PropertyProfileService {
             propertyProfileDTO.year_built,     
             propertyProfileDTO.description,
             propertyProfileDTO.feature,
+            propertyProfileDTO.photo_url,
             propertyProfileDTO.is_active,
             userId
         ]

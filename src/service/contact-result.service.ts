@@ -24,8 +24,8 @@ export class ContactResultService {
 
     async createContactResult(contactResultDTO: ContactResultDTO, userId: number) {
         const parameters = [
-            contactResultDTO.contact_result_name, 
             contactResultDTO.menu_id,
+            contactResultDTO.contact_result_name, 
             contactResultDTO.contact_result_description, 
             userId
         ];
@@ -40,9 +40,9 @@ export class ContactResultService {
 
     async updateContactResult(contactResultDTO: ContactResultDTO, userId: number) {
         const parameters = [
-            contactResultDTO.contact_result_id,
-            contactResultDTO.contact_result_name, 
             contactResultDTO.menu_id,
+            contactResultDTO.contact_result_id,
+            contactResultDTO.contact_result_name,          
             contactResultDTO.contact_result_description, 
             contactResultDTO.is_active,
             userId

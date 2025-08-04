@@ -34,7 +34,7 @@ export class PropertyStatusService {
     }
 
     async updatePropertyStatus(propertyStatusDTO: PropertyStatusDTO, userId: number) {
-        const parameters = [propertyStatusDTO.property_status_id, propertyStatusDTO.property_status_name, propertyStatusDTO.property_status_description, userId];
+        const parameters = [propertyStatusDTO.property_status_id, propertyStatusDTO.property_status_name, propertyStatusDTO.property_status_description, propertyStatusDTO.is_active, userId];
         try {
             const result = await this.call_tracker.query(SQL.propertyStatusUpdate, parameters);
             return result;
