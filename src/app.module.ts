@@ -51,6 +51,8 @@ import { DashboardController } from './controller/dashboard.controller';
 import { DashboardService } from './service/dashboard.service';
 import { PropertyStatusController } from './controller/property-status.controller';
 import { PropertyStatusService } from './service/property-status.service';
+import { ContactResultService } from './service/contact-result.service';
+import { ContactResultController } from './controller/contact-result.controller';
 
 @Module({
   imports: [
@@ -98,6 +100,7 @@ import { PropertyStatusService } from './service/property-status.service';
     PhotoUploadController,
     DashboardController,
     PropertyStatusController,
+    ContactResultController,
     ],
   providers: [
     AuthGuard,
@@ -125,6 +128,7 @@ import { PropertyStatusService } from './service/property-status.service';
     PhotoUploadService,
     DashboardService,
     PropertyStatusService,
+    ContactResultService,
   ],
 })
 

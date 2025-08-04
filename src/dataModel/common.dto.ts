@@ -1,4 +1,4 @@
-import { IsIn, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsIn, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { Transform } from 'class-transformer';
 
 export class CommonDTO {
@@ -19,5 +19,9 @@ export class CommonDTO {
     @IsOptional()
     @Transform(({ value }) => (value === '' ? null : value))
     query_search: string;
+
+    @IsString()
+    @IsOptional()
+    menu_id: string;
 
 }

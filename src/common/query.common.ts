@@ -119,6 +119,12 @@ export const SQL = {
     callLogDetailLogInsert: 'CALL call_log_detail_insert($1, $2, $3, $4, $5, $6, $7, $8)',
     callLogDetailLogUpdate: 'CALL call_log_detail_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
 
+/*  ==============================> CONTACT RESULT <================================ */
+    contactResultPagination: 'SELECT * FROM contact_result_pagination($1, $2, $3, $4, $5)',
+    contactResultInsert: 'CALL contact_result_insert($1, $2, $3)',
+    contactResultUpdate: 'CALL contact_result_update($1, $2, $3, $4, $5)',
+    contactResultDelete: 'CALL contact_result_delete($1)',
+
 /*  ==============================> DASHBOARD <================================ */
     dashboardSummary: 'SELECT * FROM dashboard_summary($1)',
 
