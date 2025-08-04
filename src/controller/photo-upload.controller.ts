@@ -36,17 +36,20 @@ export class PhotoUploadController {
       return { message: 'No file uploaded.' };
     }
 
-    if(menu === 'lead') {
+    if(menu.toLowerCase() === 'lead') {
       prefix = 'LD'
-    }else if(menu === 'Staff') {
+    }else if(menu.toLowerCase() === 'staff') {
       prefix = '';
-    }else{
+    }else if(menu.toLowerCase() === 'site_visit') {
+      prefix = 'ST';
+    }
+    else if(menu.toLowerCase() === 'property_profile') {
       prefix = 'ST';
     }
 
     if (!photoId) {
-      const leadNumber = await this.leadService.leadNumber(prefix);
-      photoId = leadNumber[0].id;
+      const prefixNumber = await this.leadService.leadNumber(prefix);
+      photoId = prefixNumber[0].id;
     }
     const imageUrl = await this.photoUploadService.uploadOneFileToCloud(photo, photoId, menu);
     return { imageUrl, message: 'Photo uploaded successfully!' };
@@ -76,6 +79,22 @@ export class PhotoUploadController {
   ) {
     if (!files || files.length === 0) {
       return { message: 'No files uploaded.' };
+    }
+    let prefix = '';
+    if(menu.toLowerCase() === 'lead') {
+      prefix = 'LD'
+    }else if(menu.toLowerCase() === 'staff') {
+      prefix = '';
+    }else if(menu.toLowerCase() === 'site_visit') {
+      prefix = 'ST';
+    }
+    else if(menu.toLowerCase() === 'property_profile') {
+      prefix = 'ST';
+    }
+
+    if (!photoId) {
+      const prefixNumber = await this.leadService.leadNumber(prefix);
+      photoId = prefixNumber[0].id;
     }
     const uploadedUrls = await this.photoUploadService.uploadMultipleFilesToCloud(files, photoId, menu);
     return { imageUrls: uploadedUrls, message: 'Photos uploaded successfully!' };
