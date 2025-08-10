@@ -128,6 +128,14 @@ export const SQL = {
 /*  ==============================> DASHBOARD <================================ */
     dashboardSummary: 'SELECT * FROM dashboard_summary($1)',
 
+/*  ==============================> PAYMENT <================================ */
+    generate_loan_schedule: 'SELECT * FROM generate_loan_schedule($1)',
+    paymentInsert: 'CALL payment_insert($1, $2, $3, $4, $5, $6, $7, $8)',
+    paymentUpdate: 'CALL payment_update($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+    paymentDelete: 'CALL payment_delete($1)',
+    paymentSummary: 'SELECT * FROM payment_summary($1)',
+
+
 /*  ==============================> PROPERTY STATUS <================================ */
     propertyStatusPagination: 'SELECT * FROM property_status_pagination($1, $2, $3, $4)',
     propertyStatusInsert: 'CALL property_status_insert($1, $2, $3)',

@@ -53,6 +53,8 @@ import { PropertyStatusController } from './controller/property-status.controlle
 import { PropertyStatusService } from './service/property-status.service';
 import { ContactResultService } from './service/contact-result.service';
 import { ContactResultController } from './controller/contact-result.controller';
+import { PaymentService } from './service/payment.service';
+import { PaymentController } from './controller/payment.controller';
 
 @Module({
   imports: [
@@ -101,6 +103,7 @@ import { ContactResultController } from './controller/contact-result.controller'
     DashboardController,
     PropertyStatusController,
     ContactResultController,
+    PaymentController,
     ],
   providers: [
     AuthGuard,
@@ -129,6 +132,7 @@ import { ContactResultController } from './controller/contact-result.controller'
     DashboardService,
     PropertyStatusService,
     ContactResultService,
+    PaymentService,
   ],
 })
 
