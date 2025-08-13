@@ -75,6 +75,28 @@ export class CallLogService {
         }
     }
 
+    async updateCallLogInfo(callLogDTO: CallLogDTO, userId: number, menuId: string) {
+        const parameters = [
+            callLogDTO.call_log_id,
+            callLogDTO.lead_id,
+            callLogDTO.property_profile_id,
+            callLogDTO.status_id,
+            callLogDTO.purpose,
+            callLogDTO.fail_reason,
+            callLogDTO.follow_up_date,
+            callLogDTO.is_follow_up,
+            callLogDTO.is_active,
+            userId
+        ];
+        try {
+            const result = await this.call_tracker.query(SQL.callLogUpdateInfo, parameters);
+            return result;
+        }
+        catch (error) {
+            throw new Error(error);
+        }
+    }
+
     async deleteCallLog(id: number | string) {
         try {
             const result = await this.call_tracker.query(SQL.callLogDelete, [id]);

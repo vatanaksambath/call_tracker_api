@@ -37,6 +37,7 @@ export class CallLogDTO {
     is_follow_up: boolean;
 
     @IsArray()
+    @IsOptional()
     @ValidateNested({ each: true })
     @Type(() => CallLogDetailDTO)
     p_call_log_detail: CallLogDetailDTO[];

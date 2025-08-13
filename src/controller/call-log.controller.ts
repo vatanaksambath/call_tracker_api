@@ -77,6 +77,22 @@ export class CallLogController {
     }
 
     @UseGuards(PermissionGuard)
+    @RequirePermission('MU_02', 'PM_03')
+    @UseGuards(AuthGuard)
+    @Put('update-info')
+    @UsePipes(new ValidationPipe())
+    @HttpCode(200)
+    async updateInfo(@Body() CallLogDTO: CallLogDTO, @Req() req) {
+        const userId = req.user?.user_id;
+        try {
+            const result = this.CallLogService.updateCallLogInfo(CallLogDTO, userId, "MU_02");
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
+
+    @UseGuards(PermissionGuard)
     @RequirePermission('MU_02', 'PM_04')
     @UseGuards(AuthGuard)
     @Delete(":id")

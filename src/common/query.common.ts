@@ -82,8 +82,8 @@ export const SQL = {
 /*  ==============================> Staff <================================ */
     staffPagination: 'SELECT * FROM staff_pagination($1, $2, $3, $4, $5)',
     staffSummary: 'SELECT * FROM staff_summary($1)',
-    staffInsert: 'CALL staff_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)',
-    staffUpdate: 'CALL staff_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)',
+    staffInsert: 'CALL staff_insert($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)',
+    staffUpdate: 'CALL staff_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22)',
     staffDelete: 'CALL staff_delete($1)',
 
 /*  ==============================> Channel <================================ */
@@ -113,6 +113,7 @@ export const SQL = {
     callLogSummary: 'SELECT * FROM call_log_summary($1)',
     callLogInsert: 'CALL call_log_insert($1, $2, $3, $4, $5, $6, $7, $8, $9)',
     callLogUpdate: 'CALL call_log_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
+    callLogUpdateInfo: 'CALL call_log_update_info($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
     callLogDelete: 'CALL call_log_delete($1)',
 
 /*  ==============================> CALL LOG DETAIL <================================ */

@@ -63,6 +63,14 @@ export class StaffDTO {
     @IsOptional()
     current_address: string;
 
+    @IsString()
+    @IsOptional()
+    home_address: string;
+
+    @IsString()
+    @IsOptional()
+    street_address: string;
+
     @IsArray()
     @IsString({ each: true })
     @IsOptional()
