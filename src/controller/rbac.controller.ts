@@ -67,6 +67,21 @@ export class RBACController {
     }
 
     @UseGuards(AuthGuard)
+    @Get('get-user-permission')
+    @UsePipes(new ValidationPipe())
+    @HttpCode(200)
+    async getUserPermssion(@Req() req) {
+        const userId = req.user?.user_id;
+        console.log('User ID:', userId);
+       try {
+            const result = this.rbacService.getUserPermission(userId);
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
+
+    @UseGuards(AuthGuard)
     @Get('get-user-role')
     @UsePipes(new ValidationPipe())
     @HttpCode(200)
@@ -78,7 +93,6 @@ export class RBACController {
             dispatchBadRequestException(error);
         }
     }
-
 
     @UseGuards(AuthGuard)
     @Post('create-user-role')

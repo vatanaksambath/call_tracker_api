@@ -63,6 +63,15 @@ export class RBACService {
         }
     }
 
+    async getUserPermission(userId: number) {
+        try {
+            const result = await this.call_tracker.query(SQL.getUserPermission, [userId]);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     async createUserRole(userRoleDto: UserRoleDTO, userId: number) {
         const parameters = [userRoleDto.role_id, userRoleDto.staff_id, userRoleDto.user_role_description, userRoleDto.is_active, userId]
         try {

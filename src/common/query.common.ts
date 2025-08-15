@@ -19,6 +19,7 @@ export const SQL = {
     roleDelete: 'CALL role_delete($1, $2)',
 
     getUserRole: 'SELECT * FROM get_user_role()',
+    getUserPermission: 'SELECT * FROM get_user_role_permission_by_id($1)',
     userRoleInsert: 'CALL user_role_insert($1, $2, $3, $4, $5)',
     userRoleUpdate: 'CALL user_role_update($1, $2, $3, $4, $5)',
     userRoleDelete: 'CALL user_role_delete($1, $2)',
