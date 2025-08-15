@@ -106,5 +106,16 @@ export class CallLogService {
             throw new Error(error);
         }
     }
+
+    async CallLogExport(commonDTO: CommonDTO, userId: number) {
+        const parameters = [commonDTO.search_type, commonDTO.query_search, userId];
+        try {
+            const result = await this.call_tracker.query(SQL.callLogExport, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
 }
 

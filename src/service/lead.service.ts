@@ -119,5 +119,16 @@ export class LeadService {
             throw new Error(error);
         }
     }
+
+    async LeadExport(commonDTO: CommonDTO, userId: number) {
+        const parameters = [commonDTO.search_type, commonDTO.query_search, userId];
+        try {
+            const result = await this.call_tracker.query(SQL.leadExport, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
 }
 

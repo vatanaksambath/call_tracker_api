@@ -62,5 +62,15 @@ export class ProjectService {
             throw new Error(error);
         }
     }
+
+    async projectExport(commonDTO: CommonDTO, userId: number) {
+        const parameters = [commonDTO.search_type, commonDTO.query_search, userId]
+        try {
+            const result = await this.call_tracker.query(SQL.projectExport, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
 

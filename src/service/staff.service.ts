@@ -109,5 +109,16 @@ export class StaffService {
             throw new Error(error);
         }
     }
+
+    async StaffExport(commonDTO: CommonDTO, userId: number) {
+        const parameters = [commonDTO.search_type, commonDTO.query_search, userId];
+        console.log("Parameters for staff pagination:", parameters);
+        try {
+            const result = await this.call_tracker.query(SQL.staffExport, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
 

@@ -6,6 +6,7 @@ import { dispatchBadRequestException } from '../common/error-handler.util';
 import { CallLogDetailDTO } from 'src/dataModel/call-log-detail.dto';
 import { PermissionGuard } from 'src/auth/decorator/permission.guard';
 import { RequirePermission } from 'src/auth/decorator/permission.decorator';
+import { CommonDTO } from 'src/dataModel/common.dto';
 
 @Controller('call-log-detail')
 export class CallLogDetailController {
@@ -42,4 +43,19 @@ export class CallLogDetailController {
             dispatchBadRequestException(error);
         }
     }
+
+    @UseGuards(PermissionGuard)
+        @RequirePermission('MU_02', 'PM_05')
+        @UseGuards(AuthGuard)
+        @Post('export')
+        @UsePipes(new ValidationPipe())
+        @HttpCode(200)
+        async export(@Body() commonDto: CommonDTO) {
+           try {
+                const result = this.callLogDetailService.callLogDetailExport(commonDto);
+                return result;
+            } catch (error) {
+                dispatchBadRequestException(error);
+            }
+        }
 }

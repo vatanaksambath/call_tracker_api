@@ -104,5 +104,15 @@ export class PropertyProfileService {
             throw new Error(error);
         }
     }
+
+    async PropertyProfileExport(commonDTO: CommonDTO, userId: number) {
+        const parameters = [commonDTO.search_type, commonDTO.query_search, userId]
+        try {
+            const result = await this.call_tracker.query(SQL.propertyProfileExport, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
 

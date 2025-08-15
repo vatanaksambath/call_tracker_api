@@ -79,5 +79,15 @@ export class SiteVisitService {
             throw new Error(error);
         }
     }
+
+    async SiteVisitExport(commonDTO: CommonDTO, userId: number) {
+        const parameters = [commonDTO.call_log_id, userId]
+        try {
+            const result = await this.call_tracker.query(SQL.siteVisitExport, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
 

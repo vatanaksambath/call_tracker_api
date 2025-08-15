@@ -3,10 +3,10 @@ import { Transform } from 'class-transformer';
 
 export class CommonDTO {
 
-    @IsNotEmpty({ message: 'page is required' })
+     @IsOptional()
     page_number: number;
 
-    @IsNotEmpty({ message: 'page Size is required' })
+     @IsOptional()
     page_size: number;
 
     @Transform(({ value }) => (value === '' ? null : value))
@@ -23,5 +23,10 @@ export class CommonDTO {
     @IsString()
     @IsOptional()
     menu_id: string;
+
+    
+    @IsString()
+    @IsOptional()
+    call_log_id: string;
 
 }

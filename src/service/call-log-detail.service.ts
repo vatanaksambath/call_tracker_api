@@ -3,6 +3,7 @@ import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { SQL } from '../common/query.common';
 import { CallLogDetailDTO } from 'src/dataModel/call-log-detail.dto';
+import { CommonDTO } from 'src/dataModel/common.dto';
 
 @Injectable()
 export class CallLogDetailService {
@@ -52,4 +53,14 @@ export class CallLogDetailService {
             throw new Error(error);
         }
     }
+
+    async callLogDetailExport(commonDTO: CommonDTO) {
+            const parameters = [commonDTO.call_log_id];
+            try {
+                const result = await this.call_tracker.query(SQL.callLogDetailExport, parameters);
+                return result;
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
 }

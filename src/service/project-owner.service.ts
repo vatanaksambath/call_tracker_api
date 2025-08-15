@@ -54,5 +54,16 @@ export class ProjectOwnerService {
             throw new Error(error);
         }
     }
+
+    async exportProjectOwner(commonDTO: CommonDTO, userId: number) {
+        const parameters = [commonDTO.search_type, commonDTO.query_search]
+        try {
+            const result = await this.call_tracker.query(SQL.projectOwnerExport, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
 }
 

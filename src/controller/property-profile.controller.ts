@@ -91,4 +91,20 @@ export class PropertyProfileController {
             dispatchBadRequestException(error);
         }
     }
+
+    @UseGuards(PermissionGuard)
+    @RequirePermission('MU_06', 'PM_05')
+    @UseGuards(AuthGuard)
+    @Post('export')
+    @UsePipes(new ValidationPipe())
+    @HttpCode(200)
+    async export(@Body() commonDto: CommonDTO, @Req() req) {
+        const userId = req.user?.user_id;
+       try {
+            const result = this.propertyProfileService.PropertyProfileExport(commonDto, userId);
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
 }
