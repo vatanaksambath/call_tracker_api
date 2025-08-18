@@ -50,6 +50,9 @@ export class UserLogin extends Document {
 
   @Prop({ type: Date, default: null })
   email_sent_date: Date;
+
+  @Prop({ type: String, required: true })
+  supabase_user_id: string;
 }
 
 export const UserLoginSchema = SchemaFactory.createForClass(UserLogin);

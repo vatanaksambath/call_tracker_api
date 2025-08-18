@@ -1,8 +1,9 @@
-import { Injectable, UnauthorizedException, BadRequestException, ConflictException, NotFoundException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, BadRequestException, ConflictException, NotFoundException, Inject, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, now } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
+import { SupabaseClient } from '@supabase/supabase-js';
 import { ConfigService } from '@nestjs/config';
 import { LoginDto } from '../dataModel/auth/login.dto';
 import { ResetPasswordDto } from '../dataModel/auth/reset-password.dto';
@@ -11,28 +12,20 @@ import { UserActivityLog } from '../auth/schema//user-activity-log.schema';
 import { ForgetPasswordLog } from '../auth/schema//forget-password-log.schema';
 import { CreateUserDto } from 'src/dataModel/auth/create-user.dto';
 import { UpdateUserDto } from 'src/dataModel/update-user.dto';
+import { SUPABASE_CLIENT } from 'src/supabase/supabase.provider';
+import { ForgotPasswordDto } from 'src/dataModel/auth/forgot-password.dto';
+import { ChangePasswordDto } from 'src/dataModel/auth/change-password.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
+    @Inject(SUPABASE_CLIENT) private readonly supabase: SupabaseClient,
     @InjectModel(UserLogin.name) private readonly loginModel: Model<UserLogin>,
     @InjectModel(UserActivityLog.name) private readonly userActivityLogModel: Model<UserActivityLog>,
     @InjectModel(ForgetPasswordLog.name) private readonly forgetPasswordLogModel: Model<ForgetPasswordLog>,
   ) {}
-
-  // private decryptPassword(encryptedPass: string): string {
-  //   try {
-  //       const secret = this.configService.get<string>('CRYPTO_SECRET') || '356181248f0e77e95c382df2e5abd86108a7c7abccca340ef1f1118a15235255';
-  //       const decipher = crypto.createDecipher('aes-256-cbc', secret);
-  //       let decrypted = decipher.update(encryptedPass, 'hex', 'utf8');
-  //       decrypted += decipher.final('utf8');
-  //       return decrypted;
-  //   } catch (error) {
-  //       throw new BadRequestException('Invalid password format.');
-  //   }
-  // }
 
   async login(loginDto: LoginDto, ip: string) {
     const password = loginDto.password;
@@ -90,63 +83,198 @@ export class AuthService {
     }
   }
 
-  async resetPassword(resetDto: ResetPasswordDto) {
-    if (resetDto.new_password !== resetDto.confirm_password) throw new BadRequestException('Passwords do not match.');
-    // const newPassword = this.decryptPassword(resetDto.new_password);
-    const newPassword = resetDto.new_password;
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    const userId = resetDto.user_id.trim();
-    const result = await this.loginModel.findOneAndUpdate(
-        { user_id: userId, is_reset_password: 'no', is_active: 'yes', is_lock_out: 'no' },
-        { password: hashedPassword, is_reset_password: 'yes', last_password_change_date: new Date().toLocaleString() }
+  async changePassword(userId: string, changePasswordDto: ChangePasswordDto) {
+    const { old_password, new_password, confirm_password } = changePasswordDto;
+
+    if (new_password !== confirm_password) {
+      throw new BadRequestException('New passwords do not match.');
+    }
+
+    const user = await this.loginModel.findOne({ user_id: userId, is_active: 'yes' }).exec();
+    if (!user) {
+      throw new NotFoundException('User not found or is inactive.');
+    }
+
+    const isPasswordMatching = await bcrypt.compare(old_password, user.password);
+    if (!isPasswordMatching) {
+      throw new UnauthorizedException('Incorrect old password.');
+    }
+
+    // Step 1: Update the password in Supabase Auth
+    const { error: supabaseUpdateError } = await this.supabase.auth.admin.updateUserById(
+      user.supabase_user_id,
+      { password: new_password },
     );
-    if (!result) throw new BadRequestException('Password reset failed.');
-  
-    return { res_status: 200, res_message: 'Password reset successful.' };
+
+    if (supabaseUpdateError) {
+      throw new InternalServerErrorException(`Failed to update password in Supabase: ${supabaseUpdateError.message}`);
+    }
+
+    // Step 2: Hash the new password for MongoDB
+    const hashedPassword = await bcrypt.hash(new_password, 10);
+
+    // Step 3: Update the password in MongoDB
+    await this.loginModel.updateOne(
+      { user_id: userId },
+      {
+        password: hashedPassword,
+        last_password_change_date: new Date(),
+      },
+    );
+
+    return { res_status: 200, res_message: 'Password changed successfully.' };
+  }
+
+  async forgotPassword(forgotPasswordDto: ForgotPasswordDto) {
+    const { user_id, email } = forgotPasswordDto;
+
+    const user = await this.loginModel.findOne({ user_id, email, is_active: 'yes' });
+    if (!user) {
+      throw new BadRequestException('User with the provided User ID and Email does not exist or is inactive.');
+    }
+
+    const { error } = await this.supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: this.configService.get<string>('FRONTEND_URL') + '/update-password',
+    });
+
+    if (error) {
+      console.error('Supabase password reset link generation error:', error.message);
+      throw new InternalServerErrorException('Could not initiate password reset.');
+    }
+
+    return {
+      res_status: 200,
+      res_message: 'A password reset link has been sent to the provided email.',
+    };
+  }
+
+  async resetPassword(resetDto: ResetPasswordDto) {
+    if (resetDto.new_password !== resetDto.confirm_password) {
+      throw new BadRequestException('Passwords do not match.');
+    }
+
+    const {
+      data: { user },
+      error: tokenError,
+    } = await this.supabase.auth.getUser(resetDto.token);
+
+    if (tokenError || !user) {
+      throw new BadRequestException('Invalid or expired password reset token.');
+    }
+    
+    // Step 1: Update the password in Supabase Auth
+    const { error: supabaseUpdateError } = await this.supabase.auth.admin.updateUserById(
+        user.id,
+        { password: resetDto.new_password }
+    );
+
+    if (supabaseUpdateError) {
+        throw new InternalServerErrorException(`Failed to update password in Supabase: ${supabaseUpdateError.message}`);
+    }
+
+    // Step 2: Hash the password for MongoDB
+    const hashedPassword = await bcrypt.hash(resetDto.new_password, 10);
+
+    // Step 3: Update the password in MongoDB
+    const result = await this.loginModel.updateOne(
+      { email: user.email, is_active: 'yes' },
+      {
+        password: hashedPassword,
+        is_reset_password: 'no',
+        last_password_change_date: new Date(),
+      },
+    );
+
+    if (result.modifiedCount === 0) {
+      // Note: This might indicate a sync issue if the Supabase update succeeded but Mongo failed
+      throw new BadRequestException(
+        'Password reset failed. User not found in local DB or password could not be updated.',
+      );
+    }
+
+    return { res_status: 200, res_message: 'Password has been reset successfully.' };
   }
 
   async createUser(createUserDto: CreateUserDto): Promise<UserLogin> {
-    const { user_id, password } = createUserDto;
+    const { user_id, email, password } = createUserDto;
+
+    if (!email || !password) {
+      throw new BadRequestException('Email and password are required.');
+    }
 
     const existingUser = await this.loginModel.findOne({ user_id }).exec();
     if (existingUser) {
       throw new ConflictException('User with this ID already exists.');
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const { data: supabaseUser, error: supabaseError } =
+      await this.supabase.auth.admin.createUser({
+        email,
+        password,
+        email_confirm: true
+      });
 
+    if (supabaseError) {
+      throw new InternalServerErrorException(
+        `Failed to create user in Supabase: ${supabaseError.message}`,
+      );
+    }
+    if (!supabaseUser.user) {
+        throw new InternalServerErrorException('Supabase user was not created.');
+    }
+
+    // Step 2: If Supabase user is created, save to MongoDB
+    const hashedPassword = await bcrypt.hash(password, 10);
     const localString: string = new Date().toLocaleString();
+
     const newUser = new this.loginModel({
       ...createUserDto,
       password: hashedPassword,
+      supabase_user_id: supabaseUser.user.id, // Store the Supabase ID
       last_update_by: createUserDto.created_by,
-      last_updated: localString, 
+      last_updated: localString,
       created_date: localString,
     });
-    
+
     return newUser.save();
   }
 
   async updateUser(userId: string, updateUserDto: UpdateUserDto): Promise<UserLogin> {
-    const updateData: any = { ...updateUserDto };
+    const currentUser = await this.loginModel.findOne({ user_id: userId }).exec();
+    if (!currentUser) {
+        throw new NotFoundException(`User with ID "${userId}" not found.`);
+    }
 
+    // Check if email is being updated and is different from the current one
+    if (updateUserDto.email && updateUserDto.email !== currentUser.email) {
+        const { error: supabaseUpdateError } = await this.supabase.auth.admin.updateUserById(
+            currentUser.supabase_user_id, // Use the stored Supabase ID
+            { email: updateUserDto.email }
+        );
+
+        if (supabaseUpdateError) {
+            throw new InternalServerErrorException(`Failed to update user email in Supabase: ${supabaseUpdateError.message}`);
+        }
+    }
+
+    const updateData: any = { ...updateUserDto };
     if (updateUserDto.password) {
-        updateData.password = await bcrypt.hash(updateUserDto.password, 10);
+      updateData.password = await bcrypt.hash(updateUserDto.password, 10);
     }
 
     updateData.last_updated = new Date().toLocaleString();
     if (updateUserDto.updated_by) {
-        updateData.last_update_by = updateUserDto.updated_by;
+      updateData.last_update_by = updateUserDto.updated_by;
     }
 
     const updatedUser = await this.loginModel.findOneAndUpdate(
-        { user_id: userId },
-        { $set: updateData },
-        { new: true }
+      { user_id: userId },
+      { $set: updateData },
+      { new: true },
     ).exec();
 
     if (!updatedUser) {
-        throw new NotFoundException(`User with ID "${userId}" not found.`);
+      throw new NotFoundException(`User with ID "${userId}" not found during update.`);
     }
 
     return updatedUser;

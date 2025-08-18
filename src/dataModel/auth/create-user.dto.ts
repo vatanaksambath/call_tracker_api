@@ -18,7 +18,7 @@ export class CreateUserDto {
     password: string;
 
     @IsEmail() @IsNotEmpty()
-    email?: boolean;
+    email?: string;
 
     @IsString() @IsOptional()
     email_sent_date: string;
@@ -49,5 +49,8 @@ export class CreateUserDto {
 
     @IsString() @IsOptional()
     last_password_change_date: string;
+
+    @IsString() @IsOptional()
+    supabase_user_id: string;
 
 }

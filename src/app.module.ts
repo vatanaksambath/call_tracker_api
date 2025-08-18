@@ -55,6 +55,7 @@ import { ContactResultService } from './service/contact-result.service';
 import { ContactResultController } from './controller/contact-result.controller';
 import { PaymentService } from './service/payment.service';
 import { PaymentController } from './controller/payment.controller';
+import { SupabaseModule } from './supabase/supabase.module';
 
 @Module({
   imports: [
@@ -78,7 +79,8 @@ import { PaymentController } from './controller/payment.controller';
       }),
       inject: [ConfigService],
     }),
-    PGConnection
+    PGConnection,
+    SupabaseModule,
   ],
 
   controllers:[
