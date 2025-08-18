@@ -13,6 +13,22 @@ export class CallLogDetailController {
     constructor(private readonly callLogDetailService: CallLogDetailService) { }
 
     @UseGuards(PermissionGuard)
+    @RequirePermission('MU_02', 'PM_02')
+    @UseGuards(AuthGuard)
+    @Post('pagination')
+    @UsePipes(new ValidationPipe())
+    @HttpCode(200)
+    async get(@Body() commonDto: CommonDTO, @Req() req) {
+        const userId = req.user?.user_id;
+       try {
+            const result = this.callLogDetailService.CallLogDetailPagination(commonDto, userId);
+            return result;
+        } catch (error) {
+            dispatchBadRequestException(error);
+        }
+    }
+
+    @UseGuards(PermissionGuard)
     @RequirePermission('MU_02', 'PM_01')
     @UseGuards(AuthGuard)
     @Post('create')

@@ -128,6 +128,7 @@ export const SQL = {
 
 /*  ==============================> CALL LOG DETAIL <================================ */
     callLogDetailLogInsert: 'CALL call_log_detail_insert($1, $2, $3, $4, $5, $6, $7, $8)',
+    callLogDetailPagination: 'SELECT * FROM call_log_detail_pagination($1, $2, $3, $4, $5)',
     callLogDetailLogUpdate: 'CALL call_log_detail_update($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
     callLogDetailExport: 'SELECT * FROM call_log_detail_export($1)',
 

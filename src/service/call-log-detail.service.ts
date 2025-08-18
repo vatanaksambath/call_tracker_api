@@ -12,6 +12,17 @@ export class CallLogDetailService {
         @InjectDataSource() private call_tracker: DataSource
     ) { }
 
+    async CallLogDetailPagination(commonDTO: CommonDTO, userId: number) {
+        const parameters = [commonDTO.page_number, commonDTO.page_size, commonDTO.search_type, commonDTO.query_search, userId];
+        try {
+            const result = await this.call_tracker.query(SQL.callLogDetailPagination, parameters);
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+
     async createCallLogDetail(callLogDetailDTO: CallLogDetailDTO, userId: number, menuId: string) {
         const parameters = [
             callLogDetailDTO.call_log_id,
