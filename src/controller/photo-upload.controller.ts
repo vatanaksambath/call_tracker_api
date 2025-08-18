@@ -4,6 +4,7 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { PhotoUploadService } from '../service/photo-upload.service';
 import { LeadService } from 'src/service/lead.service';
+import { getPrefix } from 'src/common/common.util';
 
 @Controller('files')
 export class PhotoUploadController {
@@ -31,21 +32,11 @@ export class PhotoUploadController {
     @Body('photoId') photoId: string,
     @Body('menu') menu: string,
   ) {
-    let prefix = '';
     if (!photo) {
       return { message: 'No file uploaded.' };
     }
 
-    if(menu.toLowerCase() === 'lead') {
-      prefix = 'LD'
-    }else if(menu.toLowerCase() === 'staff') {
-      prefix = '';
-    }else if(menu.toLowerCase() === 'site_visit') {
-      prefix = 'ST';
-    }
-    else if(menu.toLowerCase() === 'property_profile') {
-      prefix = 'ST';
-    }
+    const prefix = getPrefix(menu.toLowerCase());
 
     if (!photoId) {
       const prefixNumber = await this.leadService.leadNumber(prefix);
@@ -80,17 +71,8 @@ export class PhotoUploadController {
     if (!files || files.length === 0) {
       return { message: 'No files uploaded.' };
     }
-    let prefix = '';
-    if(menu.toLowerCase() === 'lead') {
-      prefix = 'LD'
-    }else if(menu.toLowerCase() === 'staff') {
-      prefix = '';
-    }else if(menu.toLowerCase() === 'site_visit') {
-      prefix = 'ST';
-    }
-    else if(menu.toLowerCase() === 'property_profile') {
-      prefix = 'ST';
-    }
+    
+    const prefix = getPrefix(menu.toLowerCase());
 
     if (!photoId) {
       const prefixNumber = await this.leadService.leadNumber(prefix);

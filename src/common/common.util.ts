@@ -151,3 +151,14 @@ export function formatAccountNumber(accountNumber: string): string {
 
   return `${accountNumber.slice(0, 3)}-${accountNumber.slice(3)}`;
 }
+
+export function getPrefix(menu) {
+  const prefixMap = {
+    'lead': 'LD',
+    'staff': '',
+    'site_visit': 'ST',
+    'property_profile': 'PT',
+  };
+
+  return prefixMap[menu.toLowerCase()] ?? 'UNKNOWN';
+}

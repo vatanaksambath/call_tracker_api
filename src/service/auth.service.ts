@@ -144,7 +144,7 @@ export class AuthService {
 
     return {
       res_status: 200,
-      res_message: 'A password reset link has been sent to the provided email.',
+      res_message: 'A password reset link has been sent to the your email.',
     };
   }
 
