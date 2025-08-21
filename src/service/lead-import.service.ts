@@ -4,6 +4,7 @@ import { Readable } from 'stream';
 import { dispatchBadRequestException } from '../common/error-handler.util';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { SQL } from 'src/common/query.common';
 
 @Injectable()
 export class LeadImportService {
@@ -66,20 +67,15 @@ export class LeadImportService {
             }));
 
             const leadsJsonString = JSON.stringify(leadsData);
-            
-            // Assuming your SQL call looks something like this:
-            const query = `SELECT * FROM public.import_leads_and_create_call_logs($1, $2, $3, $4);`;
-            const parameters = [ leadsJsonString, STATIC_PROPERTY_PROFILE_ID, STATIC_STATUS_ID, userId ];
-            
-            const response = await this.call_tracker.query(query, parameters);
+                     
+            const parameters = [leadsJsonString, STATIC_PROPERTY_PROFILE_ID, STATIC_STATUS_ID, userId];
+            const response = await this.call_tracker.query(SQL.importLeadsAndCreateCallLogs, parameters);
 
-            // --- FIX: Access the result correctly for TypeORM ---
             if (!response || response.length === 0) {
                 this.logger.error('Database function did not return a result.');
                 dispatchBadRequestException('Failed to get a response from the database.');
             }
 
-            // The key is the lowercase name of your PostgreSQL function
             const result = response[0].import_leads_and_create_call_logs;
 
             if (result.status === 'error') {
