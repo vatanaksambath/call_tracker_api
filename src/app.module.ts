@@ -56,6 +56,8 @@ import { ContactResultController } from './controller/contact-result.controller'
 import { PaymentService } from './service/payment.service';
 import { PaymentController } from './controller/payment.controller';
 import { SupabaseModule } from './supabase/supabase.module';
+import { LeadImportService } from './service/lead-import.service';
+import { LeadImportController } from './controller/lead-import.controller';
 
 @Module({
   imports: [
@@ -106,6 +108,7 @@ import { SupabaseModule } from './supabase/supabase.module';
     PropertyStatusController,
     ContactResultController,
     PaymentController,
+    LeadImportController,
     ],
   providers: [
     AuthGuard,
@@ -135,6 +138,7 @@ import { SupabaseModule } from './supabase/supabase.module';
     PropertyStatusService,
     ContactResultService,
     PaymentService,
+    LeadImportService,
   ],
 })
 

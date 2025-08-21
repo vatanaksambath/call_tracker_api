@@ -148,12 +148,14 @@ export const SQL = {
     paymentDelete: 'CALL payment_delete($1)',
     paymentSummary: 'SELECT * FROM payment_summary($1)',
 
-
 /*  ==============================> PROPERTY STATUS <================================ */
     propertyStatusPagination: 'SELECT * FROM property_status_pagination($1, $2, $3, $4)',
     propertyStatusInsert: 'CALL property_status_insert($1, $2, $3)',
     propertyStatusUpdate: 'CALL property_status_update($1, $2, $3, $4, $5)',
     propertyStatusDelete: 'CALL property_status_delete($1)',
+
+/*  ==============================> IMPORT DATA LEAD AND CALL LOG <================================ */
+    importLeadsAndCreateCallLogs: 'SELECT * FROM import_leads_and_create_call_logs($1, $2, $3, $4)',
 
 /*  ==============================> Audit log <================================ */
     auditLogInsert  : 'CALL audit_logs_insert( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )'
